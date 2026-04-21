@@ -4,8 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Social HQ — We Make Brands Impossible to Ignore</title>
-    <meta name="description" content="Your Social HQ is a short-form video studio. We help brands become impossible to ignore on social.">
-    <link rel="icon" type="image/jpeg" href="logo.jpg">
+    <meta name="description" content="Your Social HQ is a short-form video studio. Strategy, scripting, filming, editing, posting — all handled by a team that treats your brand like our own.">
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="apple-touch-icon" href="/favicon.svg">
+    <meta name="theme-color" content="#F4EEDD">
+
+    <!-- Open Graph / Twitter -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yoursocialheadquarters.com/">
+    <meta property="og:title" content="Your Social HQ — We Make Brands Impossible to Ignore">
+    <meta property="og:description" content="A short-form video studio for brands that mean business. Strategy, scripting, filming, editing, posting — handled end to end.">
+    <meta property="og:image" content="https://yoursocialheadquarters.com/og-image.svg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Your Social HQ">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Your Social HQ — We Make Brands Impossible to Ignore">
+    <meta name="twitter:description" content="A short-form video studio for brands that mean business.">
+    <meta name="twitter:image" content="https://yoursocialheadquarters.com/og-image.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
@@ -1435,7 +1453,7 @@
             align-items: stretch;
         }
         .pack {
-            padding: 1.75rem 1.75rem 1.875rem;
+            padding: 1.75rem 1.75rem 1.625rem;
             background: var(--cream-soft);
             border: 1.5px solid var(--ink);
             border-radius: 20px;
@@ -1445,26 +1463,45 @@
             flex-direction: column;
             overflow: hidden;
         }
+        /* Top poster accent bar — unique color per tier */
+        .pack::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 5px;
+            background: var(--pink);
+            transform: scaleX(1);
+            transform-origin: left;
+        }
         .pack:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 22px 44px -18px rgba(10, 10, 14, 0.3);
+            transform: translateY(-6px);
+            box-shadow: 0 24px 48px -18px rgba(10, 10, 14, 0.3);
         }
         .pack:active { transform: translateY(-2px); box-shadow: 0 10px 22px -12px rgba(10, 10, 14, 0.22); }
+
+        /* Tier-specific color treatments */
+        .pack--starter { background: var(--cream-soft); }
+        .pack--starter::before { background: var(--pink); }
+
         .pack.featured {
             background: var(--ink);
             color: var(--cream);
-            transform: translateY(-10px);
-            box-shadow: 0 22px 48px -16px rgba(10, 10, 14, 0.32);
+            transform: translateY(-12px);
+            box-shadow: 0 26px 52px -16px rgba(10, 10, 14, 0.38);
         }
-        .pack.featured:hover {
-            transform: translateY(-14px);
-        }
+        .pack.featured::before { background: var(--pink); }
+        .pack.featured:hover { transform: translateY(-16px); }
+
+        .pack--authority { background: var(--cream-warm); }
+        .pack--authority::before { background: var(--ink); }
+
+        /* "Most popular" flag — rotated sticker style */
         .pack.featured::after {
-            content: 'Most popular';
+            content: '★ Most popular ★';
             position: absolute;
-            top: -14px;
-            right: 24px;
-            padding: 0.375rem 0.875rem;
+            top: -16px;
+            right: 20px;
+            padding: 0.5rem 1rem;
             background: var(--pink);
             color: var(--cream);
             border-radius: 999px;
@@ -1474,98 +1511,198 @@
             letter-spacing: 0.14em;
             text-transform: uppercase;
             border: 1.5px solid var(--ink);
+            transform: rotate(3deg);
+            box-shadow: 0 6px 14px -6px rgba(10, 10, 14, 0.3);
+            z-index: 2;
         }
 
-        /* Tier name (small badge at top) */
-        .pack-name {
-            font-family: 'Instrument Sans', sans-serif;
-            font-size: 0.7rem;
-            font-weight: 700;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
+        /* TIER HEADER — big number + tier name */
+        .pack-header {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            padding-bottom: 1rem;
+            margin-bottom: 1.25rem;
+            border-bottom: 1.5px solid var(--line-strong);
+        }
+        .pack.featured .pack-header { border-bottom-color: rgba(244, 238, 221, 0.2); }
+
+        .pack-no {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 2.5rem;
+            line-height: 0.9;
+            letter-spacing: -0.05em;
             color: var(--pink);
-            margin-bottom: 0.75rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
         }
-        .pack-name::before {
-            content: '';
-            width: 1.25rem; height: 1.5px;
-            background: var(--pink);
-        }
-        .pack.featured .pack-name { color: var(--pink); }
+        .pack.featured .pack-no { color: var(--pink); }
+        .pack--authority .pack-no { color: var(--ink); }
 
-        /* Price — the HERO */
+        .pack-name {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 1rem;
+            font-weight: 900;
+            letter-spacing: -0.01em;
+            text-transform: uppercase;
+            color: var(--ink);
+            line-height: 1;
+        }
+        .pack.featured .pack-name { color: var(--cream); }
+
+        /* PRICE — the hero */
         .pack-price {
             display: flex;
             align-items: baseline;
             gap: 0.5rem;
-            margin-bottom: 0.625rem;
+            margin-bottom: 0.75rem;
         }
         .pack-price .amt {
             font-family: 'Archivo Black', sans-serif;
-            font-size: clamp(2.5rem, 3.5vw, 3.25rem);
+            font-size: clamp(2.75rem, 3.75vw, 3.5rem);
             line-height: 0.9;
-            letter-spacing: -0.04em;
+            letter-spacing: -0.045em;
             color: var(--ink);
         }
         .pack.featured .pack-price .amt { color: var(--cream); }
         .pack-price .per {
             font-family: 'Instrument Sans', sans-serif;
-            font-size: 0.875rem;
+            font-size: 0.9rem;
             color: var(--ink-faint);
             font-weight: 500;
         }
         .pack.featured .pack-price .per { color: rgba(244, 238, 221, 0.55); }
 
-        /* Video count — prominent subtitle (bigger than before, smaller than price) */
+        /* VIDEOS / MONTH — highlighted strip */
         .pack-videos {
             display: flex;
-            align-items: baseline;
-            gap: 0.5rem;
-            padding-bottom: 1.125rem;
-            border-bottom: 1.5px solid var(--line-strong);
-            margin-bottom: 1.125rem;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.875rem 1rem;
+            margin: 0 -0.25rem 1.5rem;
+            border-radius: 12px;
+            background: rgba(255, 45, 107, 0.08);
+            border: 1.5px dashed rgba(255, 45, 107, 0.4);
         }
-        .pack.featured .pack-videos { border-bottom-color: rgba(244, 238, 221, 0.22); }
+        .pack.featured .pack-videos {
+            background: rgba(255, 45, 107, 0.15);
+            border-color: rgba(255, 45, 107, 0.5);
+        }
+        .pack--authority .pack-videos {
+            background: rgba(10, 10, 14, 0.05);
+            border-color: rgba(10, 10, 14, 0.22);
+        }
         .pack-videos-num {
             font-family: 'Archivo Black', sans-serif;
-            font-size: 1.5rem;
-            line-height: 1;
-            letter-spacing: -0.03em;
+            font-size: 2.25rem;
+            line-height: 0.9;
+            letter-spacing: -0.04em;
             color: var(--pink);
         }
+        .pack--authority .pack-videos-num { color: var(--ink); }
         .pack-videos-label {
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--ink);
+            line-height: 1.2;
+        }
+        .pack.featured .pack-videos-label { color: var(--cream); }
+        .pack-videos-label em {
             font-family: 'Instrument Serif', serif;
             font-style: italic;
-            font-size: 1.125rem;
-            line-height: 1.2;
-            letter-spacing: -0.01em;
+            font-weight: 400;
             color: var(--pink);
+            letter-spacing: -0.01em;
+            font-size: 1.15em;
+            text-transform: none;
         }
+
+        /* FEATURES list */
         .pack ul {
             display: grid;
-            gap: 0.875rem;
+            gap: 0.625rem;
             font-family: 'Instrument Sans', sans-serif;
-            font-size: 0.9375rem;
+            font-size: 0.9rem;
             color: var(--ink-soft);
             flex: 1;
+            margin-bottom: 1.25rem;
         }
-        .pack.featured ul { color: rgba(244, 238, 221, 0.88); }
+        .pack.featured ul { color: rgba(244, 238, 221, 0.85); }
         .pack ul li {
             display: flex;
-            align-items: start;
+            align-items: center;
             gap: 0.625rem;
+            padding: 0.25rem 0;
         }
         .pack ul li::before {
             content: '';
-            width: 5px; height: 5px;
-            background: var(--pink);
-            border-radius: 50%;
+            width: 18px; height: 18px;
             flex-shrink: 0;
-            margin-top: 0.65em;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23FF2D6B' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
         }
+
+        /* CTA — "Book this plan" per card */
+        .pack-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.625rem;
+            padding: 0.875rem 1.25rem;
+            background: var(--ink);
+            color: var(--cream);
+            border-radius: 999px;
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.875rem;
+            font-weight: 700;
+            letter-spacing: 0.005em;
+            line-height: 1;
+            border: 1.5px solid var(--ink);
+            margin-top: auto;
+            min-height: 44px;
+            transition: background-color 260ms var(--ease-snap),
+                        color 260ms var(--ease-snap),
+                        border-color 260ms var(--ease-snap),
+                        transform 260ms var(--ease-snap),
+                        box-shadow 320ms var(--ease-snap);
+        }
+        .pack-cta:hover {
+            background: var(--pink);
+            border-color: var(--pink);
+            color: var(--cream);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px -12px rgba(255, 45, 107, 0.55);
+        }
+        .pack-cta:active { transform: translateY(0); }
+        .pack-cta svg { width: 14px; height: 14px; transition: transform 260ms var(--ease-snap); }
+        .pack-cta:hover svg { transform: translate(3px, -3px); }
+        /* Featured pack CTA: cream bg on ink card */
+        .pack.featured .pack-cta {
+            background: var(--cream);
+            color: var(--ink);
+            border-color: var(--cream);
+        }
+        .pack.featured .pack-cta:hover {
+            background: var(--pink);
+            border-color: var(--pink);
+            color: var(--cream);
+        }
+
+        /* Packages footnote */
+        .packages-foot {
+            margin-top: 1.75rem;
+            padding-top: 1.25rem;
+            border-top: 1px dashed var(--line-strong);
+            text-align: center;
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.8rem;
+            color: var(--ink-faint);
+            letter-spacing: 0.03em;
+        }
+        .packages-foot strong { color: var(--ink); font-weight: 700; }
 
         /* ======================================
            CTA — editorial closer (new)
@@ -2711,12 +2848,15 @@
             </div>
 
             <div class="packages-grid">
-                <article class="pack reveal">
-                    <div class="pack-name">Starter</div>
+                <article class="pack pack--starter reveal">
+                    <div class="pack-header">
+                        <span class="pack-no">01</span>
+                        <span class="pack-name">Starter</span>
+                    </div>
                     <div class="pack-price"><span class="amt">$2,995</span><span class="per">/ month</span></div>
                     <div class="pack-videos">
                         <span class="pack-videos-num">15</span>
-                        <span class="pack-videos-label">videos / month</span>
+                        <span class="pack-videos-label">videos<br/><em>per month</em></span>
                     </div>
                     <ul>
                         <li>On-location filming</li>
@@ -2725,13 +2865,20 @@
                         <li>Monthly strategy call</li>
                         <li>Performance reporting</li>
                     </ul>
+                    <a href="https://calendly.com/d/cxrq-w97-n9c/discovery-call-your-social-hq" target="_blank" rel="noopener" class="pack-cta">
+                        Book Starter
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+                    </a>
                 </article>
                 <article class="pack featured reveal reveal-delay-1">
-                    <div class="pack-name">Growth</div>
+                    <div class="pack-header">
+                        <span class="pack-no">02</span>
+                        <span class="pack-name">Growth</span>
+                    </div>
                     <div class="pack-price"><span class="amt">$3,595</span><span class="per">/ month</span></div>
                     <div class="pack-videos">
                         <span class="pack-videos-num">20</span>
-                        <span class="pack-videos-label">videos / month</span>
+                        <span class="pack-videos-label">videos<br/><em>per month</em></span>
                     </div>
                     <ul>
                         <li>On-location filming</li>
@@ -2740,13 +2887,20 @@
                         <li>Monthly strategy call</li>
                         <li>Performance reporting</li>
                     </ul>
+                    <a href="https://calendly.com/d/cxrq-w97-n9c/discovery-call-your-social-hq" target="_blank" rel="noopener" class="pack-cta">
+                        Book Growth
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+                    </a>
                 </article>
-                <article class="pack reveal reveal-delay-2">
-                    <div class="pack-name">Authority</div>
+                <article class="pack pack--authority reveal reveal-delay-2">
+                    <div class="pack-header">
+                        <span class="pack-no">03</span>
+                        <span class="pack-name">Authority</span>
+                    </div>
                     <div class="pack-price"><span class="amt">$4,895</span><span class="per">/ month</span></div>
                     <div class="pack-videos">
                         <span class="pack-videos-num">30</span>
-                        <span class="pack-videos-label">videos / month</span>
+                        <span class="pack-videos-label">videos<br/><em>per month</em></span>
                     </div>
                     <ul>
                         <li>On-location filming</li>
@@ -2755,8 +2909,14 @@
                         <li>Monthly strategy call</li>
                         <li>Performance reporting</li>
                     </ul>
+                    <a href="https://calendly.com/d/cxrq-w97-n9c/discovery-call-your-social-hq" target="_blank" rel="noopener" class="pack-cta">
+                        Book Authority
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+                    </a>
                 </article>
             </div>
+
+            <p class="packages-foot"><strong>3-month minimum</strong> · month-to-month after · every plan includes on-location filming &amp; full production</p>
         </div>
     </section>
 
