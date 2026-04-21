@@ -931,18 +931,19 @@
         .diff {
             background: var(--cream);
             border-top: 1.5px solid var(--ink);
+            padding: clamp(3rem, 5vw, 4.5rem) 0;
         }
         .diff-head {
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1.2fr 1fr;
             gap: 3rem;
             align-items: end;
         }
         .diff-title {
             font-family: 'Archivo Black', sans-serif;
-            font-size: clamp(2rem, 4vw, 3.75rem);
-            line-height: 0.9;
+            font-size: clamp(1.75rem, 3.2vw, 3rem);
+            line-height: 0.92;
             letter-spacing: -0.035em;
             text-transform: uppercase;
             color: var(--ink);
@@ -957,8 +958,8 @@
             font-size: 1.05em;
         }
         .diff-lead {
-            font-size: 1.0625rem;
-            line-height: 1.6;
+            font-size: 0.9375rem;
+            line-height: 1.55;
             color: var(--ink-muted);
             max-width: 42ch;
         }
@@ -966,18 +967,18 @@
         .diff-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 1.75rem;
+            gap: 1.25rem;
         }
         .diff-card {
-            padding: clamp(2rem, 2.5vw, 3rem);
-            border-radius: 20px;
+            padding: 1.5rem 1.75rem 1.75rem;
+            border-radius: 16px;
             position: relative;
             transition: transform 400ms var(--ease-snap), box-shadow 400ms var(--ease-snap);
-            min-height: 280px;
+            min-height: 200px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            gap: 2rem;
+            gap: 1.25rem;
             overflow: hidden;
         }
         .diff-card:nth-child(1) { background: var(--ink); color: var(--cream); }
@@ -996,7 +997,7 @@
         }
         .diff-card .num {
             font-family: 'Archivo Black', sans-serif;
-            font-size: 3.5rem;
+            font-size: 2.25rem;
             line-height: 0.9;
             letter-spacing: -0.04em;
             opacity: 0.9;
@@ -1017,16 +1018,16 @@
         }
         .diff-card h3 {
             font-family: 'Archivo Black', sans-serif;
-            font-size: clamp(1.5rem, 2.5vw, 2.25rem);
-            line-height: 1;
+            font-size: clamp(1.125rem, 1.5vw, 1.5rem);
+            line-height: 1.05;
             letter-spacing: -0.025em;
             text-transform: uppercase;
-            margin-bottom: 1rem;
+            margin-bottom: 0.625rem;
         }
         .diff-card p {
             font-family: 'Instrument Sans', sans-serif;
-            font-size: 0.9375rem;
-            line-height: 1.55;
+            font-size: 0.875rem;
+            line-height: 1.5;
         }
         .diff-card:nth-child(1) p { color: rgba(244, 238, 221, 0.82); }
         .diff-card:nth-child(2) p { color: rgba(244, 238, 221, 0.92); }
@@ -2652,7 +2653,7 @@
                     <span class="stat-tag">Monster Army</span>
                     <div class="num">350<span class="unit">K</span><em>+</em></div>
                     <h3 class="stat-label">Followers scaled</h3>
-                    <p class="stat-note">Grew <strong>8.7×</strong> under our strategy — from 40K to 350K+.</p>
+                    <p class="stat-note">From <strong>40K to 350K+</strong> — <strong>8.7×</strong> growth under our strategy.</p>
                 </article>
 
                 <article class="stat reveal reveal-delay-2">
