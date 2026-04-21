@@ -1395,20 +1395,21 @@
         .packages {
             background: var(--cream);
             border-top: 1.5px solid var(--ink);
+            padding: clamp(3rem, 5vw, 4.5rem) 0;
         }
         .packages-head {
-            margin-bottom: 3.5rem;
+            margin-bottom: 2.5rem;
             text-align: center;
         }
         .packages-title {
             font-family: 'Archivo Black', sans-serif;
-            font-size: clamp(2rem, 4vw, 3.75rem);
-            line-height: 0.9;
+            font-size: clamp(1.75rem, 3.2vw, 3rem);
+            line-height: 0.92;
             letter-spacing: -0.035em;
             text-transform: uppercase;
             color: var(--ink);
-            max-width: 20ch;
-            margin: 1.5rem auto 1.5rem;
+            max-width: 22ch;
+            margin: 0.75rem auto 0.75rem;
         }
         .packages-title .ital {
             font-family: 'Instrument Serif', serif;
@@ -1420,20 +1421,21 @@
             font-size: 1.05em;
         }
         .packages-lead {
-            font-size: 1.0625rem;
-            line-height: 1.6;
+            font-size: 0.9375rem;
+            line-height: 1.55;
             color: var(--ink-muted);
-            max-width: 54ch;
+            max-width: 48ch;
             margin: 0 auto;
         }
 
         .packages-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 1.75rem;
+            gap: 1.25rem;
+            align-items: stretch;
         }
         .pack {
-            padding: 2.25rem;
+            padding: 1.75rem 1.75rem 1.875rem;
             background: var(--cream-soft);
             border: 1.5px solid var(--ink);
             border-radius: 20px;
@@ -1441,6 +1443,7 @@
             transition: transform 400ms var(--ease-snap), box-shadow 400ms var(--ease-snap);
             display: flex;
             flex-direction: column;
+            overflow: hidden;
         }
         .pack:hover {
             transform: translateY(-5px);
@@ -1461,58 +1464,86 @@
             position: absolute;
             top: -14px;
             right: 24px;
-            padding: 0.35rem 0.875rem;
+            padding: 0.375rem 0.875rem;
             background: var(--pink);
             color: var(--cream);
             border-radius: 999px;
             font-family: 'Instrument Sans', sans-serif;
-            font-size: 0.6875rem;
-            font-weight: 600;
-            letter-spacing: 0.12em;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
             text-transform: uppercase;
+            border: 1.5px solid var(--ink);
         }
+
+        /* Tier name (small badge at top) */
         .pack-name {
-            font-family: 'Archivo Black', sans-serif;
-            font-size: 2rem;
-            line-height: 1;
-            letter-spacing: -0.03em;
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
             text-transform: uppercase;
-            color: var(--ink);
-            margin-bottom: 1rem;
-        }
-        .pack.featured .pack-name { color: var(--cream); }
-        .pack-desc {
-            font-family: 'Instrument Serif', serif;
-            font-style: italic;
-            font-size: 1.0625rem;
-            line-height: 1.4;
             color: var(--pink);
-            margin-bottom: 1.5rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1.5px solid var(--line-strong);
+            margin-bottom: 0.75rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
         }
-        .pack.featured .pack-desc { color: var(--pink); border-bottom-color: rgba(244, 238, 221, 0.22); }
+        .pack-name::before {
+            content: '';
+            width: 1.25rem; height: 1.5px;
+            background: var(--pink);
+        }
+        .pack.featured .pack-name { color: var(--pink); }
+
+        /* Price — the HERO */
         .pack-price {
             display: flex;
             align-items: baseline;
-            gap: 0.375rem;
-            margin-bottom: 0.5rem;
+            gap: 0.5rem;
+            margin-bottom: 0.625rem;
         }
-        .pack.featured .pack-price { border-bottom-color: rgba(244, 238, 221, 0.22); }
         .pack-price .amt {
             font-family: 'Archivo Black', sans-serif;
-            font-size: 2.75rem;
-            line-height: 1;
-            letter-spacing: -0.03em;
+            font-size: clamp(2.5rem, 3.5vw, 3.25rem);
+            line-height: 0.9;
+            letter-spacing: -0.04em;
             color: var(--ink);
         }
         .pack.featured .pack-price .amt { color: var(--cream); }
         .pack-price .per {
             font-family: 'Instrument Sans', sans-serif;
-            font-size: 0.8125rem;
+            font-size: 0.875rem;
             color: var(--ink-faint);
+            font-weight: 500;
         }
         .pack.featured .pack-price .per { color: rgba(244, 238, 221, 0.55); }
+
+        /* Video count — prominent subtitle (bigger than before, smaller than price) */
+        .pack-videos {
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+            padding-bottom: 1.125rem;
+            border-bottom: 1.5px solid var(--line-strong);
+            margin-bottom: 1.125rem;
+        }
+        .pack.featured .pack-videos { border-bottom-color: rgba(244, 238, 221, 0.22); }
+        .pack-videos-num {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 1.5rem;
+            line-height: 1;
+            letter-spacing: -0.03em;
+            color: var(--pink);
+        }
+        .pack-videos-label {
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-size: 1.125rem;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+            color: var(--pink);
+        }
         .pack ul {
             display: grid;
             gap: 0.875rem;
@@ -2683,7 +2714,10 @@
                 <article class="pack reveal">
                     <div class="pack-name">Starter</div>
                     <div class="pack-price"><span class="amt">$2,995</span><span class="per">/ month</span></div>
-                    <div class="pack-desc">15 videos per month</div>
+                    <div class="pack-videos">
+                        <span class="pack-videos-num">15</span>
+                        <span class="pack-videos-label">videos / month</span>
+                    </div>
                     <ul>
                         <li>On-location filming</li>
                         <li>Scripting &amp; editing</li>
@@ -2695,7 +2729,10 @@
                 <article class="pack featured reveal reveal-delay-1">
                     <div class="pack-name">Growth</div>
                     <div class="pack-price"><span class="amt">$3,595</span><span class="per">/ month</span></div>
-                    <div class="pack-desc">20 videos per month</div>
+                    <div class="pack-videos">
+                        <span class="pack-videos-num">20</span>
+                        <span class="pack-videos-label">videos / month</span>
+                    </div>
                     <ul>
                         <li>On-location filming</li>
                         <li>Scripting &amp; editing</li>
@@ -2707,7 +2744,10 @@
                 <article class="pack reveal reveal-delay-2">
                     <div class="pack-name">Authority</div>
                     <div class="pack-price"><span class="amt">$4,895</span><span class="per">/ month</span></div>
-                    <div class="pack-desc">30 videos per month</div>
+                    <div class="pack-videos">
+                        <span class="pack-videos-num">30</span>
+                        <span class="pack-videos-label">videos / month</span>
+                    </div>
                     <ul>
                         <li>On-location filming</li>
                         <li>Scripting &amp; editing</li>
