@@ -415,36 +415,64 @@
             font-weight: 500;
         }
 
-        /* Decorative sticker */
+        /* Decorative sticker — SVG circular text stamp */
         .hero-sticker {
             position: absolute;
-            top: 26%;
-            right: 4%;
-            width: 150px; height: 150px;
-            background: var(--pink);
-            border-radius: 50%;
-            display: grid;
-            place-items: center;
-            text-align: center;
-            padding: 1rem;
-            transform: rotate(-12deg);
-            animation: spin-slow 18s linear infinite, bounce 3s ease-in-out infinite;
-            color: var(--cream);
-            font-family: 'Archivo Black', sans-serif;
-            font-size: 0.875rem;
-            line-height: 1;
-            text-transform: uppercase;
-            letter-spacing: 0.02em;
+            top: 22%;
+            right: 3%;
+            width: 180px; height: 180px;
             pointer-events: none;
             z-index: 3;
+            animation: sticker-bounce 4s ease-in-out infinite;
+        }
+        .hero-sticker-disc {
+            width: 100%;
+            height: 100%;
+            background: var(--pink);
+            border-radius: 50%;
+            position: relative;
+            box-shadow: 0 10px 32px rgba(255, 45, 107, 0.25);
+        }
+        .hero-sticker-ring {
+            position: absolute;
+            inset: 0;
+            animation: spin-slow 16s linear infinite;
+        }
+        .hero-sticker-ring svg {
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+        }
+        .hero-sticker-ring text {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 13.5px;
+            letter-spacing: 4.5px;
+            fill: var(--cream);
+            text-transform: uppercase;
+        }
+        .hero-sticker-center {
+            position: absolute;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            pointer-events: none;
+        }
+        .hero-sticker-center .mark {
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-weight: 400;
+            font-size: 3.5rem;
+            color: var(--cream);
+            line-height: 1;
+            letter-spacing: -0.02em;
         }
         @keyframes spin-slow {
-            from { transform: rotate(-12deg); }
-            to { transform: rotate(348deg); }
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
-        @keyframes bounce {
+        @keyframes sticker-bounce {
             0%, 100% { translate: 0 0; }
-            50% { translate: 0 -12px; }
+            50% { translate: 0 -10px; }
         }
 
         /* ======================================
@@ -1322,7 +1350,11 @@
             font-size: 1.0625rem;
             font-weight: 500;
             line-height: 1.45;
+            color: inherit;
         }
+        .stat:nth-child(1) h3 { color: var(--cream); }
+        .stat:nth-child(2) h3 { color: var(--cream); }
+        .stat:nth-child(3) h3 { color: var(--ink); }
         .stat h3 strong { font-weight: 700; }
         .stat .num {
             font-family: 'Archivo Black', sans-serif;
@@ -1825,6 +1857,14 @@
         .v4-curtain-panel--top { border-bottom: 2px solid var(--pink); }
         .v4-curtain.done .v4-curtain-panel--top { transform: translateY(-100%); }
         .v4-curtain.done .v4-curtain-panel--bot { transform: translateY(100%); }
+        /* Kill overlays the moment we start lifting — they're siblings of panels, not children */
+        .v4-curtain.done .v4-curtain-meta,
+        .v4-curtain.done .v4-curtain-issue,
+        .v4-curtain.done .v4-curtain-prog,
+        .v4-curtain.done .v4-curtain-wordmark {
+            opacity: 0;
+            transition: opacity 200ms ease;
+        }
 
         /* Center wordmark — V4's poster treatment */
         .v4-curtain-wordmark {
@@ -2083,7 +2123,24 @@
             </div>
         </div>
         <div class="hero-sticker" aria-hidden="true">
-            ★ Scripts<br/>Film<br/>Edit<br/>Post ★
+            <div class="hero-sticker-disc">
+                <div class="hero-sticker-ring">
+                    <svg viewBox="0 0 180 180">
+                        <defs>
+                            <path id="hero-sticker-path"
+                                  d="M 90, 90 m -66, 0 a 66,66 0 1,1 132,0 a 66,66 0 1,1 -132,0" />
+                        </defs>
+                        <text>
+                            <textPath href="#hero-sticker-path" startOffset="0">
+                                ★ SCRIPTS ★ FILM ★ EDIT ★ POST
+                            </textPath>
+                        </text>
+                    </svg>
+                </div>
+                <div class="hero-sticker-center">
+                    <span class="mark">HQ</span>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -2503,8 +2560,8 @@
             }, 90);
             setTimeout(() => {
                 curtain.classList.add('done');
-                setTimeout(() => curtain.style.display = 'none', 1400);
-            }, 1450);
+                setTimeout(() => curtain.style.display = 'none', 750);
+            }, 1250);
         })();
 
         /* ============================================================
@@ -2598,7 +2655,7 @@
                 { text: 'coaches', bg: '#7C3AED' },
                 { text: 'studios', bg: '#FF2D6B' },
                 { text: 'restaurants', bg: '#0A0A0E' },
-                { text: 'operators', bg: '#FF6B2C' }
+                { text: 'trainers', bg: '#FF6B2C' }
             ];
             const swap = document.getElementById('cycle-word');
             const text = document.getElementById('cycle-text');
