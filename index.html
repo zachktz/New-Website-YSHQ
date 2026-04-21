@@ -1539,27 +1539,118 @@
         }
 
         /* ======================================
-           CTA — giant final statement
+           CTA — editorial closer (new)
+           Left-aligned, rotating sticker, tickers top + bottom.
            ====================================== */
         .cta {
             background: var(--pink);
             color: var(--cream);
-            text-align: center;
-            padding: 8rem 0;
             position: relative;
             overflow: hidden;
             border-top: 1.5px solid var(--ink);
             border-bottom: 1.5px solid var(--ink);
         }
-        .cta-kicker { margin-bottom: 2rem; }
+        /* Tickers */
+        .cta-ticker {
+            background: var(--ink);
+            color: var(--cream);
+            padding: 0.875rem 0;
+            overflow: hidden;
+            border-bottom: 1.5px solid var(--ink);
+        }
+        .cta-ticker--bot { border-top: 1.5px solid var(--ink); border-bottom: 0; }
+        .cta-ticker-track {
+            display: flex;
+            gap: 3rem;
+            white-space: nowrap;
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(1rem, 1.5vw, 1.35rem);
+            line-height: 1;
+            letter-spacing: 0.01em;
+            text-transform: uppercase;
+            animation: cta-ticker 28s linear infinite;
+        }
+        .cta-ticker--bot .cta-ticker-track {
+            animation-duration: 36s;
+            animation-direction: reverse;
+            background: var(--pink);
+        }
+        .cta-ticker--bot { background: var(--pink); color: var(--ink); }
+        .cta-ticker-track span {
+            display: inline-flex;
+            align-items: center;
+            gap: 3rem;
+        }
+        .cta-ticker-track i {
+            font-style: normal;
+            color: var(--pink);
+            font-size: 1.4em;
+            line-height: 0.5;
+        }
+        .cta-ticker--bot .cta-ticker-track i { color: var(--ink); }
+        @keyframes cta-ticker {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        /* Body */
+        .cta-body {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: clamp(2rem, 5vw, 6rem);
+            align-items: center;
+            padding: clamp(4rem, 8vw, 7rem) 0;
+            position: relative;
+        }
+        .cta-left { position: relative; z-index: 2; }
+        .cta-right { position: relative; z-index: 2; }
+
+        .cta-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+        }
+        .cta-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.55rem 1.125rem;
+            border-radius: 999px;
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+        .cta-tag--dark { background: var(--ink); color: var(--cream); }
+        .cta-tag--dark .tdot {
+            width: 7px; height: 7px; border-radius: 50%;
+            background: var(--pink);
+            animation: ctaPulse 1.6s ease-in-out infinite;
+        }
+        .cta-tag--cream {
+            background: rgba(244, 238, 221, 0.14);
+            color: var(--cream);
+            border: 1.5px solid rgba(244, 238, 221, 0.4);
+        }
+        .cta-tag--cream .tdot {
+            width: 7px; height: 7px; border-radius: 50%;
+            background: var(--cream);
+        }
+        @keyframes ctaPulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(1.4); }
+        }
+
         .cta-title {
             font-family: 'Archivo Black', sans-serif;
-            font-size: clamp(2.25rem, 5vw, 5rem);
-            line-height: 0.92;
+            font-size: clamp(2.75rem, 7vw, 7rem);
+            line-height: 0.9;
             letter-spacing: -0.045em;
             text-transform: uppercase;
             color: var(--cream);
-            margin: 0 auto 1.5rem;
+            margin-bottom: 1.75rem;
             max-width: 14ch;
         }
         .cta-title .ital {
@@ -1570,48 +1661,175 @@
             letter-spacing: -0.015em;
             color: var(--ink);
             font-size: 1.05em;
+            position: relative;
+            display: inline-block;
         }
+        /* Animated underline under IMPOSSIBLE word */
+        .cta-title .ital::after {
+            content: '';
+            position: absolute;
+            left: -0.08em; right: -0.08em;
+            bottom: 0.12em;
+            height: 0.12em;
+            background: var(--cream);
+            z-index: -1;
+            transform: scaleX(0);
+            transform-origin: left;
+            animation: ctaStrike 1.2s 0.5s var(--ease-snap) forwards;
+        }
+        @keyframes ctaStrike { to { transform: scaleX(1); } }
+
         .cta-sub {
-            font-size: 1.125rem;
-            line-height: 1.55;
-            color: rgba(244, 238, 221, 0.88);
-            max-width: 52ch;
-            margin: 0 auto 2.5rem;
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-size: clamp(1.25rem, 1.6vw, 1.625rem);
+            line-height: 1.35;
+            color: var(--ink);
+            max-width: 28ch;
+            margin-bottom: 2.5rem;
+        }
+
+        .cta-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
         }
         .cta-btn {
             display: inline-flex;
             align-items: center;
-            gap: 0.625rem;
-            padding: 1.25rem 2rem;
+            gap: 0.875rem;
+            padding: 1.25rem 1.75rem 1.25rem 2rem;
             background: var(--ink);
             color: var(--cream);
             border-radius: 999px;
             font-family: 'Instrument Sans', sans-serif;
-            font-size: 1rem;
-            font-weight: 600;
+            font-size: 1.0625rem;
+            font-weight: 700;
+            letter-spacing: 0.01em;
             transition: all 320ms var(--ease-snap);
+            position: relative;
+            overflow: hidden;
         }
-        .cta-btn:hover {
+        .cta-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--cream);
+            transform: translateX(-101%);
+            transition: transform 380ms var(--ease-snap);
+        }
+        .cta-btn:hover::before { transform: translateX(0); }
+        .cta-btn:hover { color: var(--ink); transform: translateY(-2px); }
+        .cta-btn > * { position: relative; z-index: 1; }
+        .cta-btn svg {
+            width: 20px; height: 20px;
+            transition: transform 320ms var(--ease-snap);
             background: var(--cream);
             color: var(--ink);
-            transform: translateY(-2px);
+            border-radius: 50%;
+            padding: 3px;
         }
-        .cta-btn svg { width: 18px; height: 18px; transition: transform 320ms; }
-        .cta-btn:hover svg { transform: translateX(5px); }
+        .cta-btn:hover svg { transform: translate(4px, -4px); background: var(--ink); color: var(--cream); }
 
-        .cta-alt {
-            margin-top: 1.75rem;
-            font-size: 0.875rem;
-            color: rgba(244, 238, 221, 0.78);
-        }
-        .cta-alt a {
+        .cta-email {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
             color: var(--cream);
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
             text-decoration: underline;
             text-decoration-thickness: 1.5px;
-            text-underline-offset: 4px;
+            text-underline-offset: 5px;
             transition: color 200ms;
         }
-        .cta-alt a:hover { color: var(--ink); }
+        .cta-email:hover { color: var(--ink); }
+        .cta-email::before {
+            content: '→';
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 1.1em;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem 2rem;
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: rgba(10, 10, 14, 0.75);
+        }
+        .cta-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .cta-meta span::before {
+            content: '';
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: var(--ink);
+        }
+
+        /* Rotating sticker (V4 CTA variant) */
+        .cta-sticker {
+            width: clamp(180px, 18vw, 240px);
+            height: clamp(180px, 18vw, 240px);
+            position: relative;
+            animation: ctaSticker-bounce 4s ease-in-out infinite;
+        }
+        .cta-sticker-disc {
+            width: 100%; height: 100%;
+            background: var(--ink);
+            border-radius: 50%;
+            position: relative;
+            box-shadow: 0 14px 36px rgba(10, 10, 14, 0.25);
+        }
+        .cta-sticker-ring {
+            position: absolute;
+            inset: 0;
+            animation: spin-slow 18s linear infinite;
+        }
+        .cta-sticker-ring svg { width: 100%; height: 100%; overflow: visible; }
+        .cta-sticker-ring text {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 15px;
+            letter-spacing: 4px;
+            fill: var(--cream);
+            text-transform: uppercase;
+        }
+        .cta-sticker-center {
+            position: absolute;
+            inset: 0;
+            display: grid;
+            place-items: center;
+        }
+        .cta-sticker-center span {
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            color: var(--pink);
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            line-height: 1;
+        }
+        @keyframes ctaSticker-bounce {
+            0%, 100% { translate: 0 0; transform: rotate(-3deg); }
+            50% { translate: 0 -14px; transform: rotate(3deg); }
+        }
+
+        @media (max-width: 880px) {
+            .cta-body { grid-template-columns: 1fr; gap: 2.5rem; }
+            .cta-right { order: -1; }
+            .cta-sticker { width: 140px; height: 140px; margin: 0 auto; }
+            .cta-title { font-size: clamp(2.5rem, 12vw, 4.5rem); max-width: none; }
+            .cta-sub { font-size: 1.125rem; max-width: none; }
+        }
 
         /* ======================================
            Footer
@@ -2132,7 +2350,7 @@
                         </defs>
                         <text>
                             <textPath href="#hero-sticker-path" startOffset="0">
-                                ★ SCRIPTS ★ FILM ★ EDIT ★ POST
+                                ★ SCRIPT ★ FILM ★ EDIT ★ POST
                             </textPath>
                         </text>
                     </svg>
@@ -2522,16 +2740,73 @@
 
     <!-- CTA -->
     <section class="cta">
+        <!-- Top ticker -->
+        <div class="cta-ticker" aria-hidden="true">
+            <div class="cta-ticker-track">
+                <span>Let's talk <i>✦</i> Now booking 2026 <i>✦</i> Real conversations <i>✦</i> No pitch decks <i>✦</i> Let's talk <i>✦</i> Now booking 2026 <i>✦</i> Real conversations <i>✦</i> No pitch decks <i>✦</i></span>
+                <span>Let's talk <i>✦</i> Now booking 2026 <i>✦</i> Real conversations <i>✦</i> No pitch decks <i>✦</i> Let's talk <i>✦</i> Now booking 2026 <i>✦</i> Real conversations <i>✦</i> No pitch decks <i>✦</i></span>
+            </div>
+        </div>
+
         <div class="container">
-            <div class="cta-kicker reveal"><span class="kicker kicker--cream"><span class="dot"></span> Let's talk</span></div>
-            <h1 class="cta-title reveal reveal-delay-1">
-                Ready to be<br/><span class="ital">impossible</span><br/>to ignore?
-            </h1>
-            <a href="https://calendly.com/d/cxrq-w97-n9c/discovery-call-your-social-hq" target="_blank" rel="noopener" class="cta-btn reveal reveal-delay-3">
-                Book a discovery call
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-            </a>
-            <p class="cta-alt reveal reveal-delay-3">Or email us — <a href="mailto:zach@yoursocialheadquarters.com">zach@yoursocialheadquarters.com</a></p>
+            <div class="cta-body">
+                <div class="cta-left">
+                    <div class="cta-tags reveal">
+                        <span class="cta-tag cta-tag--dark"><span class="tdot"></span> Let's talk</span>
+                        <span class="cta-tag cta-tag--cream"><span class="tdot"></span> 3 spots · 2026</span>
+                    </div>
+
+                    <h2 class="cta-title reveal reveal-delay-1">
+                        Ready to be <span class="ital">impossible</span> to ignore?
+                    </h2>
+
+                    <p class="cta-sub reveal reveal-delay-2">
+                        30 minutes. No pitch deck. No pressure. Just a real conversation about your brand.
+                    </p>
+
+                    <div class="cta-actions reveal reveal-delay-3">
+                        <a href="https://calendly.com/d/cxrq-w97-n9c/discovery-call-your-social-hq" target="_blank" rel="noopener" class="cta-btn">
+                            Book a discovery call
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+                        </a>
+                        <a href="mailto:zach@yoursocialheadquarters.com" class="cta-email">Or email us</a>
+                    </div>
+
+                    <div class="cta-meta reveal reveal-delay-3">
+                        <span>30 minutes</span>
+                        <span>Zero pressure</span>
+                        <span>Real answers</span>
+                    </div>
+                </div>
+
+                <div class="cta-right reveal reveal-delay-2">
+                    <div class="cta-sticker" aria-hidden="true">
+                        <div class="cta-sticker-disc">
+                            <div class="cta-sticker-ring">
+                                <svg viewBox="0 0 200 200">
+                                    <defs>
+                                        <path id="cta-sticker-path" d="M 100, 100 m -75, 0 a 75,75 0 1,1 150,0 a 75,75 0 1,1 -150,0" />
+                                    </defs>
+                                    <text>
+                                        <textPath href="#cta-sticker-path" startOffset="0">
+                                            ★ BOOK THE CALL ★ TALK TO US ★
+                                        </textPath>
+                                    </text>
+                                </svg>
+                            </div>
+                            <div class="cta-sticker-center"><span>HQ</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom ticker (reverse) -->
+        <div class="cta-ticker cta-ticker--bot" aria-hidden="true">
+            <div class="cta-ticker-track">
+                <span>Impossible to ignore <i>✦</i> Impossible to ignore <i>✦</i> Impossible to ignore <i>✦</i> Impossible to ignore <i>✦</i> Impossible to ignore <i>✦</i> Impossible to ignore <i>✦</i></span>
+                <span>Impossible to ignore <i>✦</i> Impossible to ignore <i>✦</i> Impossible to ignore <i>✦</i> Impossible to ignore <i>✦</i> Impossible to ignore <i>✦</i> Impossible to ignore <i>✦</i></span>
+            </div>
         </div>
     </section>
 
