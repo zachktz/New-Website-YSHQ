@@ -693,34 +693,40 @@
         }
 
         /* ======================================
-           PROCESS — horizontal scroll hijack
+           PROCESS — vertical playbook (NEW)
+           No scroll hijack. Natural flow.
            ====================================== */
         .process-wrap {
             background: var(--ink);
             color: var(--cream);
+            padding: var(--sec-y) 0;
             position: relative;
-        }
-        .process-sticky {
-            position: sticky;
-            top: 0;
-            height: 100vh;
             overflow: hidden;
-            display: flex;
-            flex-direction: column;
+        }
+        .process-wrap::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 10% 0%, rgba(255, 45, 107, 0.15), transparent 50%),
+                radial-gradient(ellipse at 90% 100%, rgba(124, 58, 237, 0.10), transparent 50%);
+            pointer-events: none;
         }
         .process-header {
-            padding: 5rem var(--gutter) 2rem;
-            flex: 0 0 auto;
-            display: flex;
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: clamp(2rem, 4vw, 4rem);
             align-items: end;
-            justify-content: space-between;
-            gap: 3rem;
-            flex-wrap: wrap;
+            padding-bottom: 3rem;
+            border-bottom: 1.5px solid rgba(244, 238, 221, 0.2);
+            margin-bottom: 0;
+            position: relative;
+            z-index: 2;
         }
         .process-title {
             font-family: 'Archivo Black', sans-serif;
-            font-size: clamp(2.25rem, 4.5vw, 4rem);
-            line-height: 0.92;
+            font-size: clamp(2.25rem, 5.5vw, 5rem);
+            line-height: 0.9;
             letter-spacing: -0.035em;
             text-transform: uppercase;
             color: var(--cream);
@@ -733,97 +739,199 @@
             letter-spacing: -0.015em;
             color: var(--pink);
         }
-        .process-progress {
-            display: flex;
-            gap: 0.5rem;
-            align-items: center;
-        }
-        .progress-dot {
-            width: 10px; height: 10px;
-            border-radius: 50%;
-            background: rgba(244, 238, 221, 0.25);
-            transition: all 400ms var(--ease-snap);
-        }
-        .progress-dot.active {
-            background: var(--pink);
-            transform: scale(1.4);
-        }
-        .progress-rule {
-            width: 48px; height: 2px;
-            background: rgba(244, 238, 221, 0.25);
-            border-radius: 2px;
+        .process-lead {
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: clamp(1rem, 1.1vw, 1.125rem);
+            line-height: 1.55;
+            color: rgba(244, 238, 221, 0.72);
+            max-width: 42ch;
         }
 
-        .process-rail {
-            flex: 1 1 0;
-            display: flex;
-            align-items: center;
-            will-change: transform;
-            padding: 0 var(--gutter);
-        }
-        .process-card {
-            flex: 0 0 min(720px, 75vw);
-            margin-right: 2rem;
-            background: var(--cream);
-            color: var(--ink);
-            border-radius: 24px;
-            padding: 3rem;
-            height: min(480px, 62vh);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+        .step-list {
             position: relative;
-            overflow: hidden;
+            z-index: 2;
         }
-        .process-card:nth-child(2) { background: var(--pink); color: var(--cream); }
-        .process-card:nth-child(3) { background: var(--cream-warm); }
-        .process-card:nth-child(4) { background: var(--ink); color: var(--cream); border: 1.5px solid var(--pink); }
+        /* Vertical pink through-line connecting all rows */
+        .step-list::before {
+            content: '';
+            position: absolute;
+            left: clamp(2.5rem, 8vw, 5rem);
+            top: 2rem; bottom: 2rem;
+            width: 2px;
+            background: linear-gradient(
+                to bottom,
+                transparent 0,
+                var(--pink) 8%,
+                rgba(255, 45, 107, 0.4) 50%,
+                var(--pink) 92%,
+                transparent 100%
+            );
+            opacity: 0.55;
+            pointer-events: none;
+        }
 
-        .process-card-num {
+        .step-row {
+            display: grid;
+            grid-template-columns: clamp(160px, 20vw, 260px) 1fr auto;
+            gap: clamp(1.5rem, 4vw, 4rem);
+            align-items: center;
+            padding: clamp(2rem, 4.5vw, 3.5rem) 0;
+            border-bottom: 1.5px solid rgba(244, 238, 221, 0.18);
+            position: relative;
+            transition: all 500ms var(--ease-snap);
+        }
+        .step-row:last-child { border-bottom: 0; }
+
+        /* Pink dot on the through-line */
+        .step-row::before {
+            content: '';
+            position: absolute;
+            left: clamp(2.5rem, 8vw, 5rem);
+            top: 50%;
+            width: 14px; height: 14px;
+            border-radius: 50%;
+            background: var(--pink);
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 0 4px var(--ink), 0 0 0 6px rgba(255, 45, 107, 0.25);
+            transition: all 500ms var(--ease-snap);
+            z-index: 1;
+        }
+        .step-row:hover::before {
+            transform: translate(-50%, -50%) scale(1.5);
+            box-shadow: 0 0 0 4px var(--ink), 0 0 0 10px rgba(255, 45, 107, 0.4);
+        }
+        .step-row:hover {
+            background: linear-gradient(to right, rgba(255, 45, 107, 0.08), transparent 70%);
+            padding-left: 1.25rem;
+        }
+        .step-row:hover .step-number {
+            color: var(--pink);
+            transform: translateX(6px);
+            letter-spacing: -0.055em;
+        }
+        .step-row:hover .step-arrow {
+            transform: translateX(14px);
+            color: var(--pink);
+        }
+        .step-row:hover .step-title { color: var(--cream); }
+
+        .step-number {
             font-family: 'Archivo Black', sans-serif;
-            font-size: clamp(6rem, 11vw, 10rem);
+            font-size: clamp(4.5rem, 11vw, 10rem);
             line-height: 0.82;
             letter-spacing: -0.05em;
-            color: var(--ink);
-            opacity: 0.95;
+            color: var(--cream);
+            padding-left: clamp(3.5rem, 10vw, 6.5rem);
+            transition: all 500ms var(--ease-snap);
         }
-        .process-card:nth-child(2) .process-card-num { color: var(--cream); }
-        .process-card:nth-child(3) .process-card-num { color: var(--ink); }
-        .process-card:nth-child(4) .process-card-num { color: var(--pink); }
 
-        .process-card-body {
+        .step-content {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 0.75rem;
         }
-        .process-card-title {
-            font-family: 'Archivo Black', sans-serif;
-            font-size: clamp(1.75rem, 2.5vw, 2.5rem);
-            line-height: 1;
-            letter-spacing: -0.025em;
-            text-transform: uppercase;
-        }
-        .process-card-desc {
+        .step-tag {
             font-family: 'Instrument Sans', sans-serif;
-            font-size: 1rem;
-            line-height: 1.55;
-            max-width: 48ch;
-        }
-        .process-card:nth-child(2) .process-card-desc { color: rgba(244, 238, 221, 0.92); }
-        .process-card:nth-child(4) .process-card-desc { color: rgba(244, 238, 221, 0.85); }
-
-        .process-card-tag {
-            font-family: 'Instrument Sans', sans-serif;
-            font-size: 0.6875rem;
+            font-size: 0.72rem;
             font-weight: 600;
-            letter-spacing: 0.16em;
+            letter-spacing: 0.18em;
             text-transform: uppercase;
-            color: var(--ink-faint);
-            margin-bottom: 0.75rem;
-            display: inline-block;
+            color: var(--pink);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
         }
-        .process-card:nth-child(2) .process-card-tag { color: rgba(244, 238, 221, 0.75); }
-        .process-card:nth-child(4) .process-card-tag { color: var(--pink); }
+        .step-tag::before {
+            content: '';
+            width: 1.5rem; height: 1.5px;
+            background: var(--pink);
+        }
+        .step-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(1.75rem, 3.5vw, 3rem);
+            line-height: 0.98;
+            letter-spacing: -0.03em;
+            text-transform: uppercase;
+            color: var(--cream);
+            transition: color 400ms var(--ease-snap);
+        }
+        .step-desc {
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: clamp(0.95rem, 1.05vw, 1.0625rem);
+            line-height: 1.55;
+            color: rgba(244, 238, 221, 0.72);
+            max-width: 52ch;
+            margin-top: 0.25rem;
+        }
+        .step-arrow {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+            color: rgba(244, 238, 221, 0.35);
+            transition: all 500ms var(--ease-snap);
+            line-height: 1;
+        }
+
+        /* Closing marker at the bottom of the list */
+        .step-end {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 2.5rem 0 0 clamp(2.5rem, 8vw, 5rem);
+            margin-left: -1px;
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--pink);
+            position: relative;
+            z-index: 2;
+        }
+        .step-end::before {
+            content: '';
+            width: 14px; height: 14px;
+            border-radius: 50%;
+            background: var(--pink);
+            margin-left: -7px;
+            box-shadow: 0 0 0 4px var(--ink), 0 0 0 6px rgba(255, 45, 107, 0.25), 0 0 24px rgba(255, 45, 107, 0.5);
+            animation: stepPulse 2.2s ease-in-out infinite;
+        }
+        @keyframes stepPulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.25); opacity: 0.8; }
+        }
+
+        @media (max-width: 1024px) {
+            .process-header { grid-template-columns: 1fr; gap: 1.5rem; }
+        }
+        @media (max-width: 720px) {
+            .step-list::before { left: 1.5rem; }
+            .step-row {
+                grid-template-columns: auto 1fr;
+                gap: 1rem;
+                padding: 1.75rem 0;
+            }
+            .step-row::before {
+                left: 1.5rem;
+                width: 10px; height: 10px;
+                box-shadow: 0 0 0 3px var(--ink), 0 0 0 5px rgba(255, 45, 107, 0.25);
+            }
+            .step-row:hover { padding-left: 0.5rem; }
+            .step-number {
+                font-size: clamp(3.5rem, 15vw, 5rem);
+                padding-left: 2.5rem;
+            }
+            .step-arrow { display: none; }
+            .step-title { font-size: clamp(1.5rem, 6vw, 2rem); }
+            .step-desc { font-size: 0.95rem; }
+            .step-end { padding-left: 1.5rem; font-size: 0.7rem; }
+            .step-end::before { width: 10px; height: 10px; }
+        }
+        @media (max-width: 480px) {
+            .step-row { grid-template-columns: 1fr; gap: 0.5rem; }
+            .step-row::before { top: 2rem; }
+            .step-number { padding-left: 2rem; }
+        }
 
         /* ======================================
            DIFFERENTIATORS — 4 tile grid
@@ -1190,14 +1298,25 @@
         }
         .stat-tag {
             font-family: 'Instrument Sans', sans-serif;
-            font-size: 0.625rem;
-            font-weight: 600;
-            letter-spacing: 0.16em;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
             text-transform: uppercase;
-            opacity: 0.7;
             margin-bottom: 1rem;
-            display: block;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--pink);
         }
+        .stat-tag::before {
+            content: '';
+            width: 1.5rem;
+            height: 1.5px;
+            background: var(--pink);
+        }
+        /* Pink stat card — use cream tag so it's readable on pink */
+        .stat:nth-child(2) .stat-tag { color: var(--cream); }
+        .stat:nth-child(2) .stat-tag::before { background: var(--cream); }
         .stat h3 {
             font-family: 'Instrument Sans', sans-serif;
             font-size: 1.0625rem;
@@ -1333,21 +1452,21 @@
         }
         .pack.featured .pack-name { color: var(--cream); }
         .pack-desc {
-            font-family: 'Instrument Sans', sans-serif;
-            font-size: 0.9375rem;
-            line-height: 1.5;
-            color: var(--ink-muted);
-            min-height: 3em;
-            margin-bottom: 1.75rem;
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-size: 1.0625rem;
+            line-height: 1.4;
+            color: var(--pink);
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1.5px solid var(--line-strong);
         }
-        .pack.featured .pack-desc { color: rgba(244, 238, 221, 0.75); }
+        .pack.featured .pack-desc { color: var(--pink); border-bottom-color: rgba(244, 238, 221, 0.22); }
         .pack-price {
             display: flex;
             align-items: baseline;
             gap: 0.375rem;
-            padding-bottom: 1.5rem;
-            margin-bottom: 1.5rem;
-            border-bottom: 1.5px solid var(--line-strong);
+            margin-bottom: 0.5rem;
         }
         .pack.featured .pack-price { border-bottom-color: rgba(244, 238, 221, 0.22); }
         .pack-price .amt {
@@ -1541,7 +1660,6 @@
         /* --- Laptop (<= 1280px) --- */
         @media (max-width: 1280px) {
             .nav-links { gap: 1.25rem; }
-            .process-card { flex: 0 0 min(620px, 70vw); }
         }
 
         /* --- Tablet landscape / small laptop (<= 1100px) --- */
@@ -1553,7 +1671,6 @@
                 gap: 1.25rem;
             }
             .svc-row { grid-template-columns: 72px 1fr 1.5fr 72px; }
-            .process-card { flex: 0 0 min(560px, 74vw); padding: 2.25rem; }
             .packages-grid { grid-template-columns: 1fr 1fr; }
             .diff-grid { grid-template-columns: 1fr 1fr; }
             .team-grid { grid-template-columns: 1fr 1fr; gap: 1.75rem; }
@@ -1615,18 +1732,7 @@
             .svc-num { font-size: 0.7rem; }
 
             /* Process */
-            .process-sticky { height: auto; min-height: 100vh; padding: 3rem 0; }
             .process-header { padding-bottom: 1.5rem; }
-            .process-card {
-                flex: 0 0 min(380px, 84vw);
-                padding: 1.75rem;
-                height: auto;
-                min-height: 360px;
-                margin-right: 0.75rem;
-            }
-            .process-card-num { font-size: clamp(4rem, 15vw, 6rem); }
-            .process-card-title { font-size: clamp(1.5rem, 6vw, 2rem); }
-            .process-card-desc { font-size: 0.95rem; }
 
             /* Diff */
             .diff-card { padding: 1.75rem; min-height: auto; }
@@ -2080,61 +2186,59 @@
 
     <!-- Process — horizontal scroll hijack -->
     <section class="process-wrap" id="process">
-        <div class="process-outer" id="process-outer" style="height: 400vh;">
-            <div class="process-sticky">
-                <div class="process-header">
-                    <div>
-                        <span class="kicker kicker--pink" style="margin-bottom: 1.5rem; display: inline-flex;"><span class="dot"></span> How it works</span>
-                        <h2 class="process-title">
-                            From kickoff<br/>to output, <span class="ital">in 4 moves.</span>
-                        </h2>
-                    </div>
-                    <div class="process-progress" id="process-progress">
-                        <span class="progress-dot active"></span>
-                        <span class="progress-rule"></span>
-                        <span class="progress-dot"></span>
-                        <span class="progress-rule"></span>
-                        <span class="progress-dot"></span>
-                        <span class="progress-rule"></span>
-                        <span class="progress-dot"></span>
-                    </div>
+        <div class="container">
+            <div class="process-header reveal">
+                <div>
+                    <span class="kicker kicker--pink" style="margin-bottom: 1.5rem; display: inline-flex;"><span class="dot"></span> How it works</span>
+                    <h2 class="process-title">
+                        From kickoff<br/>to output, <span class="ital">in 4 moves.</span>
+                    </h2>
                 </div>
-
-                <div class="process-rail" id="process-rail">
-                    <article class="process-card">
-                        <div class="process-card-num">01</div>
-                        <div class="process-card-body">
-                            <span class="process-card-tag">Step One</span>
-                            <h3 class="process-card-title">Discovery</h3>
-                            <p class="process-card-desc">We learn your brand, your market, your audience, and where the gaps are that nobody's filling.</p>
-                        </div>
-                    </article>
-                    <article class="process-card">
-                        <div class="process-card-num">02</div>
-                        <div class="process-card-body">
-                            <span class="process-card-tag">Step Two</span>
-                            <h3 class="process-card-title">Strategy</h3>
-                            <p class="process-card-desc">Custom content pillars, built around your niche and your goals. Every video has a job.</p>
-                        </div>
-                    </article>
-                    <article class="process-card">
-                        <div class="process-card-num">03</div>
-                        <div class="process-card-body">
-                            <span class="process-card-tag">Step Three</span>
-                            <h3 class="process-card-title">Production</h3>
-                            <p class="process-card-desc">Scripts, film days, edits, posting — all handled by our team on a cadence that flows.</p>
-                        </div>
-                    </article>
-                    <article class="process-card">
-                        <div class="process-card-num">04</div>
-                        <div class="process-card-body">
-                            <span class="process-card-tag">Step Four</span>
-                            <h3 class="process-card-title">Growth</h3>
-                            <p class="process-card-desc">Monthly reporting, constant iteration, compounding results. The algorithm moves — so do we.</p>
-                        </div>
-                    </article>
-                </div>
+                <p class="process-lead">
+                    We've run this enough times to know what breaks. Every step gets content live faster — without sacrificing quality.
+                </p>
             </div>
+
+            <div class="step-list">
+                <article class="step-row reveal">
+                    <span class="step-number">01</span>
+                    <div class="step-content">
+                        <span class="step-tag">Step One · Discovery</span>
+                        <h3 class="step-title">Dig in</h3>
+                        <p class="step-desc">We learn your brand, your market, your audience, and where the gaps are that nobody's filling.</p>
+                    </div>
+                    <span class="step-arrow">→</span>
+                </article>
+                <article class="step-row reveal">
+                    <span class="step-number">02</span>
+                    <div class="step-content">
+                        <span class="step-tag">Step Two · Strategy</span>
+                        <h3 class="step-title">Lock pillars</h3>
+                        <p class="step-desc">Custom content pillars, built around your niche and your goals. Every video has a job.</p>
+                    </div>
+                    <span class="step-arrow">→</span>
+                </article>
+                <article class="step-row reveal">
+                    <span class="step-number">03</span>
+                    <div class="step-content">
+                        <span class="step-tag">Step Three · Production</span>
+                        <h3 class="step-title">Ship it</h3>
+                        <p class="step-desc">Scripts, film days, edits, posting — all handled by our team on a cadence that flows.</p>
+                    </div>
+                    <span class="step-arrow">→</span>
+                </article>
+                <article class="step-row reveal">
+                    <span class="step-number">04</span>
+                    <div class="step-content">
+                        <span class="step-tag">Step Four · Growth</span>
+                        <h3 class="step-title">Compound</h3>
+                        <p class="step-desc">Monthly reporting, constant iteration, compounding results. The algorithm moves — so do we.</p>
+                    </div>
+                    <span class="step-arrow">→</span>
+                </article>
+            </div>
+
+            <div class="step-end reveal">Content live · Growth loop engaged</div>
         </div>
     </section>
 
@@ -2322,40 +2426,38 @@
             <div class="packages-grid">
                 <article class="pack reveal">
                     <div class="pack-name">Starter</div>
-                    <div class="pack-desc">Get moving. Build a real presence with consistent, strategic output.</div>
                     <div class="pack-price"><span class="amt">$2,995</span><span class="per">/ month</span></div>
+                    <div class="pack-desc">15 videos per month</div>
                     <ul>
-                        <li>15 short-form videos</li>
-                        <li>2 film days per month</li>
-                        <li>Scripting &amp; hooks</li>
-                        <li>Full editing &amp; posting</li>
+                        <li>On-location filming</li>
+                        <li>Scripting &amp; editing</li>
+                        <li>Posting &amp; captions</li>
                         <li>Monthly strategy call</li>
+                        <li>Performance reporting</li>
                     </ul>
                 </article>
                 <article class="pack featured reveal reveal-delay-1">
                     <div class="pack-name">Growth</div>
-                    <div class="pack-desc">For brands ready to dominate their local market.</div>
                     <div class="pack-price"><span class="amt">$3,595</span><span class="per">/ month</span></div>
+                    <div class="pack-desc">20 videos per month</div>
                     <ul>
-                        <li>20 short-form videos</li>
-                        <li>2–3 film days per month</li>
-                        <li>Scripting &amp; hooks</li>
-                        <li>Full editing &amp; posting</li>
+                        <li>On-location filming</li>
+                        <li>Scripting &amp; editing</li>
+                        <li>Posting &amp; captions</li>
                         <li>Monthly strategy call</li>
-                        <li>Priority iteration</li>
+                        <li>Performance reporting</li>
                     </ul>
                 </article>
                 <article class="pack reveal reveal-delay-2">
                     <div class="pack-name">Authority</div>
-                    <div class="pack-desc">Go all in. The velocity to own your category.</div>
                     <div class="pack-price"><span class="amt">$4,895</span><span class="per">/ month</span></div>
+                    <div class="pack-desc">30 videos per month</div>
                     <ul>
-                        <li>30 short-form videos</li>
-                        <li>3 film days per month</li>
-                        <li>Scripting &amp; hooks</li>
-                        <li>Full editing &amp; posting</li>
+                        <li>On-location filming</li>
+                        <li>Scripting &amp; editing</li>
+                        <li>Posting &amp; captions</li>
                         <li>Monthly strategy call</li>
-                        <li>Dedicated creative lead</li>
+                        <li>Performance reporting</li>
                     </ul>
                 </article>
             </div>
@@ -2527,44 +2629,7 @@
             setTimeout(() => { setInterval(cycle, 2400); }, 1600);
         })();
 
-        /* ============================================================
-           PROCESS HORIZONTAL SCROLL HIJACK
-           ============================================================ */
-        (function() {
-            const outer = document.getElementById('process-outer');
-            const rail = document.getElementById('process-rail');
-            const progressDots = document.querySelectorAll('#process-progress .progress-dot');
-            if (!outer || !rail) return;
-
-            const cards = rail.querySelectorAll('.process-card');
-            if (cards.length === 0) return;
-
-            function update() {
-                const rect = outer.getBoundingClientRect();
-                const vh = window.innerHeight;
-                const totalHeight = outer.offsetHeight - vh; // scroll distance
-                const scrolled = Math.max(0, -rect.top);
-                const progress = Math.min(1, Math.max(0, scrolled / totalHeight));
-
-                // Compute rail translate
-                const cardWidth = cards[0].offsetWidth;
-                const gap = parseInt(getComputedStyle(cards[0]).marginRight) || 0;
-                const totalRail = (cardWidth + gap) * (cards.length - 1) + (window.innerWidth - cardWidth) * 0;
-                // Actual travel: rail total width minus viewport width
-                const railTotalWidth = rail.scrollWidth - window.innerWidth + 48;
-                const travel = Math.max(0, railTotalWidth);
-
-                rail.style.transform = `translateX(-${progress * travel}px)`;
-
-                // Active dot
-                const activeIdx = Math.min(cards.length - 1, Math.floor(progress * cards.length));
-                progressDots.forEach((d, idx) => d.classList.toggle('active', idx === activeIdx));
-            }
-
-            update();
-            window.addEventListener('scroll', update, { passive: true });
-            window.addEventListener('resize', update);
-        })();
+        /* PROCESS — scroll hijack removed; vertical playbook now flows naturally */
     </script>
 </body>
 </html>
