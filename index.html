@@ -1,0 +1,2130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Social HQ — We Make Brands Impossible to Ignore</title>
+    <meta name="description" content="Your Social HQ is a short-form video studio. We help brands become impossible to ignore on social.">
+    <link rel="icon" type="image/jpeg" href="logo.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================================
+           YOUR SOCIAL HQ — V4 "STATEMENT"
+           Poster typography. Cream + ink + electric pink. Asymmetric.
+           Scroll-kinetic. Horizontal hijack on process.
+           Archivo Black + Instrument Sans + Instrument Serif italic.
+           ============================================================ */
+
+        :root {
+            --cream: #F4EEDD;
+            --cream-soft: #FCF8EC;
+            --cream-warm: #EEE5CE;
+            --ink: #0A0A0E;
+            --ink-soft: #1E1E24;
+            --ink-muted: #4F4F57;
+            --ink-faint: #8A8A92;
+            --pink: #FF2D6B;
+            --pink-hot: #FF0F4A;
+            --pink-soft: #FFD2DF;
+            --pink-wash: #FFEAF1;
+            --purple: #7C3AED;
+            --orange: #FF6B2C;
+            --line: rgba(10, 10, 14, 0.10);
+            --line-strong: rgba(10, 10, 14, 0.22);
+
+            --container: 1400px;
+            --container-narrow: 1040px;
+            --gutter: clamp(1.25rem, 4vw, 3rem);
+            --sec-y: clamp(5rem, 10vw, 10rem);
+
+            --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-snap: cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+            scroll-behavior: smooth;
+        }
+        img, svg, video { display: block; max-width: 100%; }
+        button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+        a { color: inherit; text-decoration: none; }
+        ul, ol { list-style: none; }
+
+        body {
+            font-family: 'Instrument Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 17px;
+            line-height: 1.55;
+            color: var(--ink-soft);
+            background: var(--cream);
+            overflow-x: hidden;
+        }
+
+        ::selection { background: var(--pink); color: var(--cream); }
+
+        /* Paper grain for warmth */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.35;
+            mix-blend-mode: multiply;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' seed='4'/%3E%3CfeColorMatrix values='0 0 0 0 0.04 0 0 0 0 0.04 0 0 0 0 0.05 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+
+        /* ======================================
+           Typography primitives
+           ====================================== */
+        .display {
+            font-family: 'Archivo Black', 'Archivo', sans-serif;
+            font-weight: 900;
+            letter-spacing: -0.035em;
+            line-height: 0.88;
+            color: var(--ink);
+            text-transform: uppercase;
+        }
+        .italic {
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-weight: 400;
+            text-transform: none;
+            letter-spacing: -0.01em;
+        }
+
+        h1, h2, h3, h4 {
+            color: var(--ink);
+        }
+        p { max-width: 62ch; }
+
+        /* ======================================
+           Layout
+           ====================================== */
+        .container {
+            width: 100%;
+            max-width: var(--container);
+            margin: 0 auto;
+            padding: 0 var(--gutter);
+            position: relative;
+            z-index: 2;
+        }
+        .container-narrow { max-width: var(--container-narrow); }
+
+        section {
+            padding: var(--sec-y) 0;
+            position: relative;
+        }
+
+        /* ======================================
+           Kicker pill
+           ====================================== */
+        .kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 0.875rem;
+            background: var(--ink);
+            color: var(--cream);
+            border-radius: 999px;
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.6875rem;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+        .kicker--pink { background: var(--pink); color: var(--cream); }
+        .kicker--cream { background: var(--cream-soft); color: var(--ink); border: 1.5px solid var(--ink); }
+        .kicker .dot {
+            width: 6px; height: 6px;
+            background: var(--pink);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        .kicker--pink .dot { background: var(--cream); }
+        .kicker--cream .dot { background: var(--pink); }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.4); }
+        }
+
+        /* ======================================
+           Buttons
+           ====================================== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 1.625rem;
+            border-radius: 999px;
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.9375rem;
+            font-weight: 600;
+            transition: all 320ms var(--ease-snap);
+            cursor: pointer;
+            border: 1.5px solid transparent;
+        }
+        .btn-primary {
+            background: var(--ink);
+            color: var(--cream);
+        }
+        .btn-primary:hover {
+            background: var(--pink);
+            transform: translateY(-2px);
+            box-shadow: 0 16px 36px -12px rgba(255, 45, 107, 0.45);
+        }
+        .btn-ghost {
+            background: transparent;
+            color: var(--ink);
+            border-color: var(--ink);
+        }
+        .btn-ghost:hover {
+            background: var(--ink);
+            color: var(--cream);
+        }
+        .btn svg { width: 14px; height: 14px; transition: transform 320ms var(--ease-snap); }
+        .btn:hover svg { transform: translateX(4px); }
+
+        /* ======================================
+           Nav
+           ====================================== */
+        .nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 80;
+            padding: 1.375rem 0;
+            transition: all 300ms var(--ease-out);
+        }
+        .nav.scrolled {
+            background: rgba(244, 238, 221, 0.82);
+            backdrop-filter: saturate(160%) blur(16px);
+            -webkit-backdrop-filter: saturate(160%) blur(16px);
+            padding: 0.875rem 0;
+            border-bottom: 1px solid var(--line);
+        }
+        .nav-inner {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        .nav-inner > .nav-cta { justify-self: end; }
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.625rem;
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 1rem;
+            letter-spacing: -0.01em;
+            color: var(--ink);
+            text-transform: uppercase;
+        }
+        .brand-mark {
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            background: var(--pink);
+            color: var(--cream);
+            display: grid;
+            place-items: center;
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 0.875rem;
+            flex-shrink: 0;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1.75rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--ink);
+        }
+        .nav-links a { transition: color 200ms; position: relative; }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            left: 50%; bottom: -5px;
+            width: 0; height: 2px;
+            background: var(--pink);
+            transition: all 300ms var(--ease-snap);
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        .nav-links a:hover { color: var(--pink); }
+        .nav-links a:hover::after { width: 100%; }
+
+        .nav-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.625rem 1.125rem;
+            background: var(--pink);
+            color: var(--cream);
+            border-radius: 999px;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            transition: all 280ms var(--ease-snap);
+        }
+        .nav-cta:hover {
+            background: var(--ink);
+            transform: translateY(-1.5px);
+        }
+        .nav-cta svg { width: 12px; height: 12px; }
+
+        /* ======================================
+           Hero — the big statement
+           ====================================== */
+        .hero {
+            padding: calc(80px + 3rem) 0 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+            padding-top: 1rem;
+        }
+        .hero-pill {
+            opacity: 0;
+            animation: fade-up 0.9s var(--ease-out) 0.2s forwards;
+        }
+        @keyframes fade-up {
+            from { opacity: 0; transform: translateY(18px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .hero-title {
+            font-size: clamp(3.25rem, 11.5vw, 11.5rem);
+            line-height: 0.86;
+            opacity: 0;
+            animation: fade-up 1s var(--ease-out) 0.4s forwards;
+        }
+        .hero-title .row { display: block; }
+        .hero-title .row--we {
+            font-size: 0.55em;
+            margin-bottom: 0.25em;
+            display: inline-block;
+            padding-left: 0.15em;
+        }
+        .hero-title .row--cycle {
+            display: inline-flex;
+            align-items: baseline;
+            color: var(--cream);
+            position: relative;
+            overflow: visible;
+            height: 1em;
+            line-height: 1em;
+            padding: 0 0.15em;
+            margin-right: 0.1em;
+        }
+        .hero-title .row--cycle::before {
+            content: '';
+            position: absolute;
+            inset: 0.02em 0;
+            background: var(--pink);
+            border-radius: 0.14em;
+            z-index: 0;
+            transition: background 500ms var(--ease-out);
+        }
+        .hero-title .cycle-word {
+            position: relative;
+            z-index: 2;
+            display: inline-block;
+            color: var(--cream);
+            white-space: nowrap;
+            animation: word-in 0.9s var(--ease-out) both;
+        }
+        @keyframes word-in {
+            from { transform: translateY(100%); opacity: 0; }
+            20% { opacity: 1; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes word-out {
+            from { transform: translateY(0); opacity: 1; }
+            80% { opacity: 0; }
+            to { transform: translateY(-100%); opacity: 0; }
+        }
+        .hero-title .row--cycle.out .cycle-word {
+            animation: word-out 0.7s var(--ease-out) both;
+        }
+
+        .hero-title .ital {
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-weight: 400;
+            text-transform: none;
+            letter-spacing: -0.015em;
+            color: var(--pink);
+            font-size: 1.02em;
+        }
+
+        .hero-sub {
+            font-size: clamp(1.0625rem, 1.5vw, 1.25rem);
+            line-height: 1.5;
+            color: var(--ink-soft);
+            max-width: 44ch;
+            opacity: 0;
+            animation: fade-up 1s var(--ease-out) 0.7s forwards;
+        }
+        .hero-sub strong { color: var(--ink); font-weight: 600; }
+
+        .hero-ctas {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fade-up 1s var(--ease-out) 0.9s forwards;
+        }
+
+        .hero-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+            padding-top: 3rem;
+            margin-top: 2.5rem;
+            border-top: 1px solid var(--line-strong);
+            opacity: 0;
+            animation: fade-up 1s var(--ease-out) 1.1s forwards;
+            flex-wrap: wrap;
+        }
+        .hero-meta-left {
+            display: flex;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+        .hero-meta-item {
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.8125rem;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+        }
+        .hero-meta-item .label {
+            display: block;
+            font-size: 0.625rem;
+            font-weight: 600;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--ink-faint);
+            margin-bottom: 0.35em;
+        }
+        .hero-meta-item .value {
+            color: var(--ink);
+            font-weight: 500;
+        }
+
+        /* Decorative sticker */
+        .hero-sticker {
+            position: absolute;
+            top: 26%;
+            right: 4%;
+            width: 150px; height: 150px;
+            background: var(--pink);
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            text-align: center;
+            padding: 1rem;
+            transform: rotate(-12deg);
+            animation: spin-slow 18s linear infinite, bounce 3s ease-in-out infinite;
+            color: var(--cream);
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 0.875rem;
+            line-height: 1;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            pointer-events: none;
+            z-index: 3;
+        }
+        @keyframes spin-slow {
+            from { transform: rotate(-12deg); }
+            to { transform: rotate(348deg); }
+        }
+        @keyframes bounce {
+            0%, 100% { translate: 0 0; }
+            50% { translate: 0 -12px; }
+        }
+
+        /* ======================================
+           Ticker marquee between sections
+           ====================================== */
+        .ticker {
+            background: var(--ink);
+            color: var(--cream);
+            padding: 1.75rem 0;
+            overflow: hidden;
+            border-top: 1.5px solid var(--ink);
+            border-bottom: 1.5px solid var(--ink);
+        }
+        .ticker-track {
+            display: flex;
+            gap: 4rem;
+            white-space: nowrap;
+            animation: scroll-ticker 32s linear infinite;
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(2.5rem, 5.5vw, 5rem);
+            line-height: 1;
+            letter-spacing: -0.025em;
+            text-transform: uppercase;
+        }
+        .ticker-track span {
+            display: inline-flex;
+            align-items: center;
+            gap: 4rem;
+        }
+        .ticker-track span::after {
+            content: '✦';
+            color: var(--pink);
+            font-size: 0.6em;
+            display: inline-block;
+        }
+        .ticker-track .ital {
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-weight: 400;
+            color: var(--pink);
+            text-transform: lowercase;
+            letter-spacing: -0.01em;
+        }
+        @keyframes scroll-ticker {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        /* ======================================
+           Reveal primitive
+           ====================================== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 900ms var(--ease-out), transform 900ms var(--ease-out);
+        }
+        .reveal.is-visible { opacity: 1; transform: translateY(0); }
+        .reveal-delay-1 { transition-delay: 0.08s; }
+        .reveal-delay-2 { transition-delay: 0.16s; }
+        .reveal-delay-3 { transition-delay: 0.24s; }
+        .reveal-delay-4 { transition-delay: 0.32s; }
+
+        /* ======================================
+           Story section (asymmetric)
+           ====================================== */
+        .story {
+            background: var(--cream);
+        }
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: start;
+        }
+        .story-lead {
+            position: sticky;
+            top: calc(80px + 2rem);
+        }
+        .story-kicker {
+            margin-bottom: 1.75rem;
+        }
+        .story-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(2.5rem, 5.5vw, 5rem);
+            line-height: 0.9;
+            letter-spacing: -0.035em;
+            text-transform: uppercase;
+            color: var(--ink);
+            margin-bottom: 1.75rem;
+        }
+        .story-title .ital {
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-weight: 400;
+            text-transform: none;
+            letter-spacing: -0.015em;
+            color: var(--pink);
+            font-size: 1.05em;
+        }
+        .story-sign {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.625rem;
+            font-size: 0.8125rem;
+            font-weight: 500;
+            color: var(--ink-muted);
+            font-family: 'Instrument Sans', sans-serif;
+        }
+        .story-sign::before {
+            content: '';
+            width: 32px; height: 2px;
+            background: var(--pink);
+        }
+
+        .story-prose {
+            font-size: 1.125rem;
+            line-height: 1.65;
+            color: var(--ink-soft);
+        }
+        .story-prose p + p { margin-top: 1.25rem; }
+        .story-prose strong { color: var(--ink); font-weight: 600; }
+        .story-prose .hl {
+            background: var(--pink-wash);
+            padding: 0.1em 0.3em;
+            border-radius: 4px;
+            color: var(--ink);
+            font-weight: 500;
+        }
+
+        /* ======================================
+           SERVICES — big typographic list
+           ====================================== */
+        .services {
+            background: var(--cream);
+            border-top: 1.5px solid var(--ink);
+        }
+        .services-head {
+            margin-bottom: 4rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: end;
+        }
+        .services-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(2.5rem, 5.5vw, 5rem);
+            line-height: 0.9;
+            letter-spacing: -0.035em;
+            text-transform: uppercase;
+            color: var(--ink);
+        }
+        .services-title .ital {
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-weight: 400;
+            text-transform: none;
+            letter-spacing: -0.015em;
+            color: var(--pink);
+            font-size: 1.05em;
+        }
+        .services-lead {
+            font-size: 1.0625rem;
+            line-height: 1.6;
+            color: var(--ink-muted);
+            max-width: 46ch;
+        }
+
+        .svc-list {
+            border-top: 1.5px solid var(--ink);
+        }
+        .svc-row {
+            display: grid;
+            grid-template-columns: 80px 1fr 2fr 100px;
+            gap: 2rem;
+            padding: 2rem 0;
+            min-height: 160px;
+            border-bottom: 1.5px solid var(--line-strong);
+            align-items: center;
+            transition: background 400ms var(--ease-out), padding 400ms var(--ease-out);
+            position: relative;
+            cursor: default;
+        }
+        .svc-row::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0;
+            width: 0; height: 100%;
+            background: var(--pink);
+            transition: width 600ms var(--ease-out);
+            z-index: 0;
+        }
+        .svc-row:hover {
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+        .svc-row:hover::before { width: 100%; }
+        .svc-row:hover .svc-num,
+        .svc-row:hover .svc-title,
+        .svc-row:hover .svc-desc,
+        .svc-row:hover .svc-arrow { color: var(--cream); position: relative; z-index: 2; }
+        .svc-row:hover .svc-arrow { transform: translateX(8px); }
+
+        .svc-num {
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            color: var(--ink-faint);
+            text-transform: uppercase;
+            transition: color 320ms;
+            position: relative; z-index: 2;
+        }
+        .svc-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(1.75rem, 3vw, 2.75rem);
+            line-height: 1;
+            letter-spacing: -0.025em;
+            text-transform: uppercase;
+            color: var(--ink);
+            transition: color 320ms;
+            position: relative; z-index: 2;
+        }
+        .svc-title .ital {
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-weight: 400;
+            text-transform: none;
+            letter-spacing: -0.01em;
+            font-size: 1.05em;
+        }
+        .svc-desc {
+            font-size: 0.9375rem;
+            line-height: 1.55;
+            color: var(--ink-muted);
+            transition: color 320ms;
+            position: relative; z-index: 2;
+            max-width: 42ch;
+        }
+        .svc-arrow {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 1.75rem;
+            color: var(--ink);
+            justify-self: end;
+            transition: color 320ms, transform 320ms;
+            position: relative; z-index: 2;
+        }
+
+        /* ======================================
+           PROCESS — horizontal scroll hijack
+           ====================================== */
+        .process-wrap {
+            background: var(--ink);
+            color: var(--cream);
+            position: relative;
+        }
+        .process-sticky {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .process-header {
+            padding: 5rem var(--gutter) 2rem;
+            flex: 0 0 auto;
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+        .process-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(2.25rem, 4.5vw, 4rem);
+            line-height: 0.92;
+            letter-spacing: -0.035em;
+            text-transform: uppercase;
+            color: var(--cream);
+        }
+        .process-title .ital {
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-weight: 400;
+            text-transform: none;
+            letter-spacing: -0.015em;
+            color: var(--pink);
+        }
+        .process-progress {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+        .progress-dot {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            background: rgba(244, 238, 221, 0.25);
+            transition: all 400ms var(--ease-snap);
+        }
+        .progress-dot.active {
+            background: var(--pink);
+            transform: scale(1.4);
+        }
+        .progress-rule {
+            width: 48px; height: 2px;
+            background: rgba(244, 238, 221, 0.25);
+            border-radius: 2px;
+        }
+
+        .process-rail {
+            flex: 1 1 0;
+            display: flex;
+            align-items: center;
+            will-change: transform;
+            padding: 0 var(--gutter);
+        }
+        .process-card {
+            flex: 0 0 min(720px, 75vw);
+            margin-right: 2rem;
+            background: var(--cream);
+            color: var(--ink);
+            border-radius: 24px;
+            padding: 3rem;
+            height: min(480px, 62vh);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+        .process-card:nth-child(2) { background: var(--pink); color: var(--cream); }
+        .process-card:nth-child(3) { background: var(--cream-warm); }
+        .process-card:nth-child(4) { background: var(--ink); color: var(--cream); border: 1.5px solid var(--pink); }
+
+        .process-card-num {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(6rem, 11vw, 10rem);
+            line-height: 0.82;
+            letter-spacing: -0.05em;
+            color: var(--ink);
+            opacity: 0.95;
+        }
+        .process-card:nth-child(2) .process-card-num { color: var(--cream); }
+        .process-card:nth-child(3) .process-card-num { color: var(--ink); }
+        .process-card:nth-child(4) .process-card-num { color: var(--pink); }
+
+        .process-card-body {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .process-card-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(1.75rem, 2.5vw, 2.5rem);
+            line-height: 1;
+            letter-spacing: -0.025em;
+            text-transform: uppercase;
+        }
+        .process-card-desc {
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 1rem;
+            line-height: 1.55;
+            max-width: 48ch;
+        }
+        .process-card:nth-child(2) .process-card-desc { color: rgba(244, 238, 221, 0.92); }
+        .process-card:nth-child(4) .process-card-desc { color: rgba(244, 238, 221, 0.85); }
+
+        .process-card-tag {
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.6875rem;
+            font-weight: 600;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--ink-faint);
+            margin-bottom: 0.75rem;
+            display: inline-block;
+        }
+        .process-card:nth-child(2) .process-card-tag { color: rgba(244, 238, 221, 0.75); }
+        .process-card:nth-child(4) .process-card-tag { color: var(--pink); }
+
+        /* ======================================
+           DIFFERENTIATORS — 4 tile grid
+           ====================================== */
+        .diff {
+            background: var(--cream);
+            border-top: 1.5px solid var(--ink);
+        }
+        .diff-head {
+            margin-bottom: 4rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: end;
+        }
+        .diff-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(2.5rem, 5.5vw, 5rem);
+            line-height: 0.9;
+            letter-spacing: -0.035em;
+            text-transform: uppercase;
+            color: var(--ink);
+        }
+        .diff-title .ital {
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-weight: 400;
+            text-transform: none;
+            letter-spacing: -0.015em;
+            color: var(--pink);
+            font-size: 1.05em;
+        }
+        .diff-lead {
+            font-size: 1.0625rem;
+            line-height: 1.6;
+            color: var(--ink-muted);
+            max-width: 42ch;
+        }
+
+        .diff-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.25rem;
+        }
+        .diff-card {
+            padding: 2.5rem;
+            border-radius: 20px;
+            position: relative;
+            transition: transform 400ms var(--ease-snap), box-shadow 400ms var(--ease-snap);
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+        }
+        .diff-card:nth-child(1) { background: var(--ink); color: var(--cream); }
+        .diff-card:nth-child(2) { background: var(--pink); color: var(--cream); }
+        .diff-card:nth-child(3) { background: var(--cream-warm); color: var(--ink); }
+        .diff-card:nth-child(4) { background: var(--cream-soft); color: var(--ink); border: 1.5px solid var(--ink); }
+        .diff-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 28px 48px -20px rgba(10, 10, 14, 0.22);
+        }
+        .diff-card-top {
+            display: flex;
+            align-items: start;
+            justify-content: space-between;
+        }
+        .diff-card .num {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 3.5rem;
+            line-height: 0.9;
+            letter-spacing: -0.04em;
+            opacity: 0.9;
+        }
+        .diff-card .tag {
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.625rem;
+            font-weight: 600;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            padding: 0.3rem 0.6rem;
+            border-radius: 999px;
+            background: rgba(244, 238, 221, 0.16);
+        }
+        .diff-card:nth-child(3) .tag,
+        .diff-card:nth-child(4) .tag {
+            background: rgba(10, 10, 14, 0.08);
+        }
+        .diff-card h3 {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+            line-height: 1;
+            letter-spacing: -0.025em;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+        }
+        .diff-card p {
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.9375rem;
+            line-height: 1.55;
+        }
+        .diff-card:nth-child(1) p { color: rgba(244, 238, 221, 0.82); }
+        .diff-card:nth-child(2) p { color: rgba(244, 238, 221, 0.92); }
+        .diff-card:nth-child(3) p,
+        .diff-card:nth-child(4) p { color: var(--ink-muted); }
+
+        /* ======================================
+           INDUSTRIES — loose tag cloud
+           ====================================== */
+        .niches {
+            background: var(--cream);
+        }
+        .niches-head {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: end;
+            margin-bottom: 3.5rem;
+        }
+        .niches-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.875rem;
+            align-items: center;
+        }
+        .niche-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 1.625rem;
+            border-radius: 999px;
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(1.125rem, 1.5vw, 1.375rem);
+            color: var(--ink);
+            text-transform: uppercase;
+            letter-spacing: -0.01em;
+            transition: all 320ms var(--ease-snap);
+            border: 1.5px solid var(--ink);
+            background: var(--cream-soft);
+        }
+        .niche-pill:nth-child(1) { background: var(--pink); color: var(--cream); border-color: var(--pink); }
+        .niche-pill:nth-child(2) { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+        .niche-pill:nth-child(3) { background: var(--cream-soft); color: var(--ink); }
+        .niche-pill:nth-child(4) { background: var(--cream-warm); color: var(--ink); }
+        .niche-pill:hover {
+            transform: translateY(-3px) rotate(-2deg);
+            box-shadow: 0 16px 28px -12px rgba(10, 10, 14, 0.22);
+        }
+        .niche-pill .dot {
+            width: 8px; height: 8px;
+            background: currentColor;
+            border-radius: 50%;
+            opacity: 0.65;
+        }
+
+        .niches-extra {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--line-strong);
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            flex-wrap: wrap;
+        }
+        .niches-extra p {
+            font-size: 0.9375rem;
+            color: var(--ink-muted);
+            margin: 0;
+            flex: 1;
+            min-width: 280px;
+        }
+        .niches-extra strong { color: var(--ink); font-weight: 600; }
+
+        /* ======================================
+           TEAM — photo + type dramatic
+           ====================================== */
+        .team {
+            background: var(--cream-warm);
+            border-top: 1.5px solid var(--ink);
+            border-bottom: 1.5px solid var(--ink);
+        }
+        .team-head {
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+        .team-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(2.5rem, 5.5vw, 5rem);
+            line-height: 0.9;
+            letter-spacing: -0.035em;
+            text-transform: uppercase;
+            color: var(--ink);
+            max-width: 20ch;
+            margin: 1.5rem auto 1.5rem;
+        }
+        .team-title .ital {
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-weight: 400;
+            text-transform: none;
+            letter-spacing: -0.015em;
+            color: var(--pink);
+            font-size: 1.05em;
+        }
+        .team-lead {
+            font-size: 1.0625rem;
+            line-height: 1.6;
+            color: var(--ink-muted);
+            max-width: 50ch;
+            margin: 0 auto;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .member {
+            background: var(--cream-soft);
+            border: 1.5px solid var(--ink);
+            border-radius: 24px;
+            padding: 0;
+            overflow: hidden;
+            position: relative;
+            transition: transform 400ms var(--ease-snap);
+        }
+        .member:hover {
+            transform: translateY(-6px);
+        }
+        .member-visual {
+            aspect-ratio: 4 / 3;
+            background: var(--ink);
+            position: relative;
+            overflow: hidden;
+        }
+        .member-visual::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 50%, rgba(10, 10, 14, 0.5) 100%);
+            pointer-events: none;
+        }
+        .member-visual img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            filter: grayscale(0.1) contrast(1.08);
+        }
+        .member-visual .letter {
+            position: absolute;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 10rem;
+            color: var(--pink);
+            line-height: 1;
+            text-transform: uppercase;
+            letter-spacing: -0.04em;
+            background: var(--ink);
+        }
+        .member:nth-child(1) .member-visual .letter { display: none; }
+        .member-info {
+            padding: 2rem 1.75rem 2rem;
+        }
+        .member-role {
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.6875rem;
+            font-weight: 600;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--pink);
+            margin-bottom: 0.5rem;
+        }
+        .member-name {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(2rem, 3.5vw, 3rem);
+            line-height: 0.95;
+            letter-spacing: -0.035em;
+            text-transform: uppercase;
+            color: var(--ink);
+            margin-bottom: 1rem;
+        }
+        .member-bio {
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.9375rem;
+            line-height: 1.55;
+            color: var(--ink-muted);
+        }
+        .member-bio strong { color: var(--ink); font-weight: 600; }
+
+        .team-note {
+            margin-top: 2.5rem;
+            text-align: center;
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.875rem;
+            color: var(--ink-muted);
+        }
+        .team-note strong { color: var(--ink); font-weight: 600; }
+
+        /* ======================================
+           NUMBERS — giant moments
+           ====================================== */
+        .numbers {
+            background: var(--cream);
+            position: relative;
+        }
+        .numbers-head {
+            margin-bottom: 4.5rem;
+            text-align: center;
+        }
+        .numbers-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(2.5rem, 5.5vw, 5rem);
+            line-height: 0.9;
+            letter-spacing: -0.035em;
+            text-transform: uppercase;
+            color: var(--ink);
+            max-width: 20ch;
+            margin: 1.5rem auto 1.5rem;
+        }
+        .numbers-title .ital {
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-weight: 400;
+            text-transform: none;
+            letter-spacing: -0.015em;
+            color: var(--pink);
+            font-size: 1.05em;
+        }
+        .numbers-lead {
+            font-size: 1.0625rem;
+            line-height: 1.6;
+            color: var(--ink-muted);
+            max-width: 50ch;
+            margin: 0 auto;
+        }
+
+        .numbers-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.25rem;
+        }
+        .stat {
+            padding: 3rem 2.5rem;
+            border-radius: 24px;
+            position: relative;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 3rem;
+            align-items: end;
+            transition: transform 400ms var(--ease-snap);
+        }
+        .stat:hover { transform: translateY(-5px); }
+        .stat:nth-child(1) { background: var(--ink); color: var(--cream); }
+        .stat:nth-child(2) { background: var(--pink); color: var(--cream); }
+        .stat:nth-child(3) { background: var(--cream-soft); color: var(--ink); border: 1.5px solid var(--ink); }
+
+        .stat-side {
+            max-width: 36ch;
+        }
+        .stat-tag {
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.625rem;
+            font-weight: 600;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            opacity: 0.7;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        .stat h3 {
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 1.0625rem;
+            font-weight: 500;
+            line-height: 1.45;
+        }
+        .stat h3 strong { font-weight: 700; }
+        .stat .num {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(5rem, 13vw, 14rem);
+            line-height: 0.82;
+            letter-spacing: -0.05em;
+            text-align: right;
+            white-space: nowrap;
+        }
+        .stat .num em {
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-weight: 400;
+            letter-spacing: -0.015em;
+            font-size: 0.85em;
+        }
+        .stat:nth-child(1) .num em { color: var(--pink); }
+        .stat:nth-child(2) .num em { color: var(--ink); }
+        .stat:nth-child(3) .num em { color: var(--pink); }
+
+        .stat .num .unit {
+            font-size: 0.38em;
+            opacity: 0.6;
+            vertical-align: baseline;
+        }
+
+        .numbers-note {
+            margin-top: 2rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--ink-faint);
+            font-family: 'Instrument Sans', sans-serif;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        /* ======================================
+           PACKAGES
+           ====================================== */
+        .packages {
+            background: var(--cream);
+            border-top: 1.5px solid var(--ink);
+        }
+        .packages-head {
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+        .packages-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(2.5rem, 5.5vw, 5rem);
+            line-height: 0.9;
+            letter-spacing: -0.035em;
+            text-transform: uppercase;
+            color: var(--ink);
+            max-width: 20ch;
+            margin: 1.5rem auto 1.5rem;
+        }
+        .packages-title .ital {
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-weight: 400;
+            text-transform: none;
+            letter-spacing: -0.015em;
+            color: var(--pink);
+            font-size: 1.05em;
+        }
+        .packages-lead {
+            font-size: 1.0625rem;
+            line-height: 1.6;
+            color: var(--ink-muted);
+            max-width: 54ch;
+            margin: 0 auto;
+        }
+
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+        }
+        .pack {
+            padding: 2.25rem 2rem;
+            background: var(--cream-soft);
+            border: 1.5px solid var(--ink);
+            border-radius: 20px;
+            position: relative;
+            transition: transform 400ms var(--ease-snap), box-shadow 400ms var(--ease-snap);
+            display: flex;
+            flex-direction: column;
+        }
+        .pack:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 22px 44px -16px rgba(10, 10, 14, 0.22);
+        }
+        .pack.featured {
+            background: var(--ink);
+            color: var(--cream);
+            transform: translateY(-10px);
+            box-shadow: 0 22px 48px -16px rgba(10, 10, 14, 0.32);
+        }
+        .pack.featured:hover {
+            transform: translateY(-14px);
+        }
+        .pack.featured::after {
+            content: 'Most popular';
+            position: absolute;
+            top: -14px;
+            right: 24px;
+            padding: 0.35rem 0.875rem;
+            background: var(--pink);
+            color: var(--cream);
+            border-radius: 999px;
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.6875rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+        .pack-name {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 2rem;
+            line-height: 1;
+            letter-spacing: -0.03em;
+            text-transform: uppercase;
+            color: var(--ink);
+            margin-bottom: 0.625rem;
+        }
+        .pack.featured .pack-name { color: var(--cream); }
+        .pack-desc {
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.9375rem;
+            line-height: 1.5;
+            color: var(--ink-muted);
+            min-height: 3em;
+            margin-bottom: 1.75rem;
+        }
+        .pack.featured .pack-desc { color: rgba(244, 238, 221, 0.75); }
+        .pack-price {
+            display: flex;
+            align-items: baseline;
+            gap: 0.375rem;
+            padding-bottom: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1.5px solid var(--line-strong);
+        }
+        .pack.featured .pack-price { border-bottom-color: rgba(244, 238, 221, 0.22); }
+        .pack-price .amt {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 2.75rem;
+            line-height: 1;
+            letter-spacing: -0.03em;
+            color: var(--ink);
+        }
+        .pack.featured .pack-price .amt { color: var(--cream); }
+        .pack-price .per {
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.8125rem;
+            color: var(--ink-faint);
+        }
+        .pack.featured .pack-price .per { color: rgba(244, 238, 221, 0.55); }
+        .pack ul {
+            display: grid;
+            gap: 0.625rem;
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.9375rem;
+            color: var(--ink-soft);
+            flex: 1;
+        }
+        .pack.featured ul { color: rgba(244, 238, 221, 0.88); }
+        .pack ul li {
+            display: flex;
+            align-items: start;
+            gap: 0.625rem;
+        }
+        .pack ul li::before {
+            content: '';
+            width: 5px; height: 5px;
+            background: var(--pink);
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 0.65em;
+        }
+
+        /* ======================================
+           CTA — giant final statement
+           ====================================== */
+        .cta {
+            background: var(--pink);
+            color: var(--cream);
+            text-align: center;
+            padding: 8rem 0;
+            position: relative;
+            overflow: hidden;
+            border-top: 1.5px solid var(--ink);
+            border-bottom: 1.5px solid var(--ink);
+        }
+        .cta-kicker { margin-bottom: 2rem; }
+        .cta-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(3rem, 9vw, 9rem);
+            line-height: 0.88;
+            letter-spacing: -0.045em;
+            text-transform: uppercase;
+            color: var(--cream);
+            margin: 0 auto 1.5rem;
+            max-width: 18ch;
+        }
+        .cta-title .ital {
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-weight: 400;
+            text-transform: none;
+            letter-spacing: -0.015em;
+            color: var(--ink);
+            font-size: 1.05em;
+        }
+        .cta-sub {
+            font-size: 1.125rem;
+            line-height: 1.55;
+            color: rgba(244, 238, 221, 0.88);
+            max-width: 52ch;
+            margin: 0 auto 2.5rem;
+        }
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.625rem;
+            padding: 1.25rem 2rem;
+            background: var(--ink);
+            color: var(--cream);
+            border-radius: 999px;
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 320ms var(--ease-snap);
+        }
+        .cta-btn:hover {
+            background: var(--cream);
+            color: var(--ink);
+            transform: translateY(-2px);
+        }
+        .cta-btn svg { width: 18px; height: 18px; transition: transform 320ms; }
+        .cta-btn:hover svg { transform: translateX(5px); }
+
+        .cta-alt {
+            margin-top: 1.75rem;
+            font-size: 0.875rem;
+            color: rgba(244, 238, 221, 0.78);
+        }
+        .cta-alt a {
+            color: var(--cream);
+            text-decoration: underline;
+            text-decoration-thickness: 1.5px;
+            text-underline-offset: 4px;
+            transition: color 200ms;
+        }
+        .cta-alt a:hover { color: var(--ink); }
+
+        /* ======================================
+           Footer
+           ====================================== */
+        footer {
+            background: var(--ink);
+            color: rgba(244, 238, 221, 0.62);
+            padding: 3rem 0 2.25rem;
+        }
+        .foot {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.8125rem;
+        }
+        .foot .brand-foot {
+            color: var(--cream);
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: -0.01em;
+        }
+        .foot a { color: rgba(244, 238, 221, 0.82); transition: color 200ms; }
+        .foot a:hover { color: var(--pink); }
+
+        /* ======================================
+           Responsive
+           ====================================== */
+        @media (max-width: 1024px) {
+            .story-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .story-lead { position: static; }
+            .services-head, .diff-head, .niches-head, .process-header { grid-template-columns: 1fr; gap: 1.5rem; }
+            .diff-grid { grid-template-columns: 1fr; }
+            .team-grid { grid-template-columns: 1fr; max-width: 520px; }
+            .packages-grid { grid-template-columns: 1fr; }
+            .pack.featured { transform: none; }
+            .pack.featured:hover { transform: translateY(-4px); }
+            .svc-row { grid-template-columns: 60px 1fr 60px; }
+            .svc-desc { display: none; }
+            .stat { grid-template-columns: 1fr; gap: 1.5rem; }
+            .stat .num { text-align: left; }
+        }
+
+        @media (max-width: 720px) {
+            body { font-size: 16px; }
+            .nav-links { display: none; }
+            .nav-inner { grid-template-columns: auto 1fr; }
+            .nav-inner > .nav-cta { justify-self: end; }
+            .hero-title { font-size: clamp(2.5rem, 13vw, 4.75rem); }
+            .hero-sticker { display: none; }
+            .process-card { flex: 0 0 min(420px, 82vw); padding: 2rem; height: auto; min-height: 420px; margin-right: 1rem; }
+            .process-card-num { font-size: 6rem; }
+            .foot { flex-direction: column; align-items: flex-start; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Nav -->
+    <nav class="nav" id="nav">
+        <div class="container nav-inner">
+            <a href="#top" class="brand">
+                <span class="brand-mark">Y</span>
+                <span>Your Social HQ</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#story">Story</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#process">Process</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#packages">Packages</a></li>
+            </ul>
+            <a href="https://calendly.com/d/cxrq-w97-n9c/discovery-call-your-social-hq" target="_blank" rel="noopener" class="nav-cta">
+                Book a call
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" id="top">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-pill">
+                    <span class="kicker"><span class="dot"></span> Now booking · 2026</span>
+                </div>
+
+                <h1 class="display hero-title">
+                    <span class="row row--we">We make</span>
+                    <span class="row">
+                        <span class="row--cycle" id="cycle-word">
+                            <span class="cycle-word" id="cycle-text">brands</span>
+                        </span>
+                    </span>
+                    <span class="row"><span class="ital">impossible</span> to ignore.</span>
+                </h1>
+
+                <p class="hero-sub">
+                    <strong>Your Social HQ</strong> is a short-form video studio. Strategy, scripting, filming, editing, posting — all handled by a team that treats your brand like our own.
+                </p>
+
+                <div class="hero-ctas">
+                    <a href="https://calendly.com/d/cxrq-w97-n9c/discovery-call-your-social-hq" target="_blank" rel="noopener" class="btn btn-primary">
+                        Book a discovery call
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+                    </a>
+                    <a href="#services" class="btn btn-ghost">See what we do</a>
+                </div>
+
+                <div class="hero-meta">
+                    <div class="hero-meta-left">
+                        <div class="hero-meta-item">
+                            <span class="label">Studio</span>
+                            <span class="value">Short-form video</span>
+                        </div>
+                        <div class="hero-meta-item">
+                            <span class="label">Founders</span>
+                            <span class="value">Zach &amp; Carson</span>
+                        </div>
+                        <div class="hero-meta-item">
+                            <span class="label">Based</span>
+                            <span class="value">San Diego, CA</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-sticker" aria-hidden="true">
+            ★ Scripts<br/>Film<br/>Edit<br/>Post ★
+        </div>
+    </section>
+
+    <!-- Ticker marquee -->
+    <div class="ticker" aria-hidden="true">
+        <div class="ticker-track">
+            <span>Short-form video <span class="ital">for</span> brands that mean business</span>
+            <span>Short-form video <span class="ital">for</span> brands that mean business</span>
+            <span>Short-form video <span class="ital">for</span> brands that mean business</span>
+            <span>Short-form video <span class="ital">for</span> brands that mean business</span>
+        </div>
+    </div>
+
+    <!-- Story -->
+    <section class="story" id="story">
+        <div class="container">
+            <div class="story-grid">
+                <div class="story-lead">
+                    <div class="story-kicker reveal"><span class="kicker"><span class="dot"></span> Our story</span></div>
+                    <h2 class="story-title reveal">
+                        Two lifelong friends. <span class="ital">One</span> studio.
+                    </h2>
+                    <p class="story-sign reveal">Zach Katz · Co-Founder</p>
+                </div>
+
+                <div class="story-prose">
+                    <p class="reveal">
+                        Before Your Social HQ, we'd already been <span class="hl">building audiences for other people</span> for years. Zach was leading social at <strong>Monster Energy</strong> — working across some of the most content-forward brands on the planet. Carson had been in the space just as long, obsessed with what actually makes short-form perform.
+                    </p>
+                    <p class="reveal reveal-delay-1">
+                        The pattern we kept seeing: local operators with great businesses, real stories, real reputations — but totally invisible on social. Not because they didn't deserve attention. Because nobody was building for them <strong>the way the big brands get built for</strong>.
+                    </p>
+                    <p class="reveal reveal-delay-2">
+                        So we built it ourselves. Same rigor, same creative standards, same hands-on obsession — applied to the brands shaping their own communities.
+                    </p>
+                    <p class="reveal reveal-delay-3">
+                        <strong>And yes — we've been friends for most of our lives.</strong> That's not a coincidence. You don't build something like this with just anyone.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services — big typographic list -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="services-head">
+                <div class="reveal">
+                    <span class="kicker" style="margin-bottom: 1.5rem; display: inline-flex;"><span class="dot"></span> What we do</span>
+                    <h2 class="services-title">
+                        Short-form, <span class="ital">handled</span> end to end.
+                    </h2>
+                </div>
+                <p class="services-lead reveal reveal-delay-1">
+                    Strategy, scripting, filming, editing, posting, reporting. You show up — we handle the rest.
+                </p>
+            </div>
+
+            <div class="svc-list">
+                <div class="svc-row reveal">
+                    <span class="svc-num">01</span>
+                    <span class="svc-title">Scripting</span>
+                    <span class="svc-desc">Hook-engineered scripts built around what's performing in your niche — not last year's template.</span>
+                    <span class="svc-arrow">→</span>
+                </div>
+                <div class="svc-row reveal">
+                    <span class="svc-num">02</span>
+                    <span class="svc-title">Filming</span>
+                    <span class="svc-desc">On-location film days with a full crew. Transitions, angles, B-roll — everything built for scroll-stopping.</span>
+                    <span class="svc-arrow">→</span>
+                </div>
+                <div class="svc-row reveal">
+                    <span class="svc-num">03</span>
+                    <span class="svc-title">Editing</span>
+                    <span class="svc-desc">Fast, sharp edits by our in-house team. Sound design, pacing, captions, thumbnails — the works.</span>
+                    <span class="svc-arrow">→</span>
+                </div>
+                <div class="svc-row reveal">
+                    <span class="svc-num">04</span>
+                    <span class="svc-title">Posting</span>
+                    <span class="svc-desc">We post, schedule, tag, and optimize every upload across your channels. Consistency compounds.</span>
+                    <span class="svc-arrow">→</span>
+                </div>
+                <div class="svc-row reveal">
+                    <span class="svc-num">05</span>
+                    <span class="svc-title">Strategy</span>
+                    <span class="svc-desc">Monthly performance reviews and an always-evolving content strategy built on live data.</span>
+                    <span class="svc-arrow">→</span>
+                </div>
+                <div class="svc-row reveal">
+                    <span class="svc-num">06</span>
+                    <span class="svc-title"><span class="ital">AI</span> Intelligence</span>
+                    <span class="svc-desc">Our proprietary AI agent monitors your niche 24/7. Every script starts from an edge nobody else has.</span>
+                    <span class="svc-arrow">→</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process — horizontal scroll hijack -->
+    <section class="process-wrap" id="process">
+        <div class="process-outer" id="process-outer" style="height: 400vh;">
+            <div class="process-sticky">
+                <div class="process-header">
+                    <div>
+                        <span class="kicker kicker--pink" style="margin-bottom: 1.5rem; display: inline-flex;"><span class="dot"></span> How it works</span>
+                        <h2 class="process-title">
+                            From kickoff<br/>to output, <span class="ital">in 4 moves.</span>
+                        </h2>
+                    </div>
+                    <div class="process-progress" id="process-progress">
+                        <span class="progress-dot active"></span>
+                        <span class="progress-rule"></span>
+                        <span class="progress-dot"></span>
+                        <span class="progress-rule"></span>
+                        <span class="progress-dot"></span>
+                        <span class="progress-rule"></span>
+                        <span class="progress-dot"></span>
+                    </div>
+                </div>
+
+                <div class="process-rail" id="process-rail">
+                    <article class="process-card">
+                        <div class="process-card-num">01</div>
+                        <div class="process-card-body">
+                            <span class="process-card-tag">Step One</span>
+                            <h3 class="process-card-title">Discovery</h3>
+                            <p class="process-card-desc">We learn your brand, your market, your audience, and where the gaps are that nobody's filling.</p>
+                        </div>
+                    </article>
+                    <article class="process-card">
+                        <div class="process-card-num">02</div>
+                        <div class="process-card-body">
+                            <span class="process-card-tag">Step Two</span>
+                            <h3 class="process-card-title">Strategy</h3>
+                            <p class="process-card-desc">Custom content pillars, built around your niche and your goals. Every video has a job.</p>
+                        </div>
+                    </article>
+                    <article class="process-card">
+                        <div class="process-card-num">03</div>
+                        <div class="process-card-body">
+                            <span class="process-card-tag">Step Three</span>
+                            <h3 class="process-card-title">Production</h3>
+                            <p class="process-card-desc">Scripts, film days, edits, posting — all handled by our team on a cadence that flows.</p>
+                        </div>
+                    </article>
+                    <article class="process-card">
+                        <div class="process-card-num">04</div>
+                        <div class="process-card-body">
+                            <span class="process-card-tag">Step Four</span>
+                            <h3 class="process-card-title">Growth</h3>
+                            <p class="process-card-desc">Monthly reporting, constant iteration, compounding results. The algorithm moves — so do we.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Differentiators -->
+    <section class="diff">
+        <div class="container">
+            <div class="diff-head">
+                <div class="reveal">
+                    <span class="kicker kicker--pink" style="margin-bottom: 1.5rem; display: inline-flex;"><span class="dot"></span> What sets us apart</span>
+                    <h2 class="diff-title">
+                        What most agencies <span class="ital">can't</span> match.
+                    </h2>
+                </div>
+                <p class="diff-lead reveal reveal-delay-1">
+                    The things you won't find on a typical services page — but you'll feel every week once we're working together.
+                </p>
+            </div>
+
+            <div class="diff-grid">
+                <article class="diff-card reveal">
+                    <div class="diff-card-top">
+                        <span class="num">01</span>
+                        <span class="tag">Tech</span>
+                    </div>
+                    <div>
+                        <h3>Proprietary AI</h3>
+                        <p>Our in-house AI runs a continuous deep-dive on every niche — 24/7 monitoring of trends, talking points, and what's landing. Every script starts from an edge.</p>
+                    </div>
+                </article>
+                <article class="diff-card reveal reveal-delay-1">
+                    <div class="diff-card-top">
+                        <span class="num">02</span>
+                        <span class="tag">Strategy</span>
+                    </div>
+                    <div>
+                        <h3>Strategy That Evolves</h3>
+                        <p>Monthly performance unpacks with you — plus direct calls with Instagram &amp; TikTok for algorithm updates from the source.</p>
+                    </div>
+                </article>
+                <article class="diff-card reveal reveal-delay-2">
+                    <div class="diff-card-top">
+                        <span class="num">03</span>
+                        <span class="tag">Pedigree</span>
+                    </div>
+                    <div>
+                        <h3>Monster Energy Pedigree</h3>
+                        <p>Zach runs social across the entire Monster Energy portfolio. That operator's perspective — built inside one of the most content-forward companies on the planet — shapes every account we touch.</p>
+                    </div>
+                </article>
+                <article class="diff-card reveal reveal-delay-3">
+                    <div class="diff-card-top">
+                        <span class="num">04</span>
+                        <span class="tag">People</span>
+                    </div>
+                    <div>
+                        <h3>Two Founders, Always On</h3>
+                        <p>No account managers, no layers. Zach &amp; Carson are in every account, every week — reachable whenever you need us. We're in the work with you.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industries -->
+    <section class="niches">
+        <div class="container">
+            <div class="niches-head">
+                <div class="reveal">
+                    <span class="kicker" style="margin-bottom: 1.5rem; display: inline-flex;"><span class="dot"></span> Industries</span>
+                    <h2 class="diff-title">
+                        Where we do our <span class="ital">best</span> work.
+                    </h2>
+                </div>
+                <p class="diff-lead reveal reveal-delay-1">
+                    We work across categories — but these are the ones we know best.
+                </p>
+            </div>
+
+            <div class="niches-list reveal">
+                <span class="niche-pill"><span class="dot"></span> Fitness</span>
+                <span class="niche-pill"><span class="dot"></span> Food</span>
+                <span class="niche-pill"><span class="dot"></span> Real Estate</span>
+                <span class="niche-pill"><span class="dot"></span> Wellness</span>
+            </div>
+
+            <div class="niches-extra reveal reveal-delay-1">
+                <p><strong>Not in one of these?</strong> We still want to talk. We work across any category where short-form video can move real results.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team -->
+    <section class="team" id="team">
+        <div class="container">
+            <div class="team-head">
+                <div class="reveal"><span class="kicker kicker--pink"><span class="dot"></span> The team</span></div>
+                <h2 class="team-title reveal reveal-delay-1">
+                    The people you'll actually <span class="ital">be</span> working with.
+                </h2>
+                <p class="team-lead reveal reveal-delay-2">Two lifelong friends, running this studio together. No account managers, no layers — just us, in every account, every week.</p>
+            </div>
+
+            <div class="team-grid">
+                <article class="member reveal">
+                    <div class="member-visual">
+                        <img src="zach.jpg" alt="Zach Katz">
+                    </div>
+                    <div class="member-info">
+                        <div class="member-role">Co-Founder</div>
+                        <h3 class="member-name">Zach Katz</h3>
+                        <p class="member-bio">Leads strategy, AI systems, and the operational engine behind every account. Previously ran social across the <strong>Monster Energy</strong> portfolio.</p>
+                    </div>
+                </article>
+
+                <article class="member reveal reveal-delay-1">
+                    <div class="member-visual">
+                        <div class="letter">C</div>
+                    </div>
+                    <div class="member-info">
+                        <div class="member-role">Co-Founder</div>
+                        <h3 class="member-name">Carson Fassett</h3>
+                        <p class="member-bio">Leads creative, production, and client partnerships. The eye behind every film day and the instinct behind every script.</p>
+                    </div>
+                </article>
+            </div>
+
+            <p class="team-note reveal reveal-delay-2">
+                <strong>Plus our crew</strong> — editors, strategists, &amp; content innovators behind the scenes on every account.
+            </p>
+        </div>
+    </section>
+
+    <!-- Numbers -->
+    <section class="numbers">
+        <div class="container">
+            <div class="numbers-head">
+                <div class="reveal"><span class="kicker"><span class="dot"></span> The numbers</span></div>
+                <h2 class="numbers-title reveal reveal-delay-1">
+                    Content that <span class="ital">actually</span> moves.
+                </h2>
+                <p class="numbers-lead reveal reveal-delay-2">Real results from real accounts. Here's what happens when strategy, production, and consistency compound.</p>
+            </div>
+
+            <div class="numbers-grid">
+                <article class="stat reveal">
+                    <div class="stat-side">
+                        <span class="stat-tag">Client work</span>
+                        <h3>Views generated in a single month — three months into a new client partnership.</h3>
+                    </div>
+                    <div class="num">1<span class="unit">M</span><em>+</em></div>
+                </article>
+
+                <article class="stat reveal reveal-delay-1">
+                    <div class="stat-side">
+                        <span class="stat-tag">Monster Army</span>
+                        <h3>Followers scaled on the account — grew <strong>8.7×</strong> under our strategy. From 40K to 350K+.</h3>
+                    </div>
+                    <div class="num">350<span class="unit">K</span><em>+</em></div>
+                </article>
+
+                <article class="stat reveal reveal-delay-2">
+                    <div class="stat-side">
+                        <span class="stat-tag">Every client</span>
+                        <h3>Founder-led. Every account has both founders in it, every week. No exceptions.</h3>
+                    </div>
+                    <div class="num">100<span class="unit">%</span></div>
+                </article>
+            </div>
+
+            <p class="numbers-note reveal">★ Representative results. Every brand is different — that's the point.</p>
+        </div>
+    </section>
+
+    <!-- Packages -->
+    <section class="packages" id="packages">
+        <div class="container">
+            <div class="packages-head">
+                <div class="reveal"><span class="kicker"><span class="dot"></span> Packages</span></div>
+                <h2 class="packages-title reveal reveal-delay-1">
+                    Three ways to <span class="ital">work</span> together.
+                </h2>
+                <p class="packages-lead reveal reveal-delay-2">Every engagement includes on-location filming, full production, posting, and monthly strategy. 3-month minimum — month-to-month after that.</p>
+            </div>
+
+            <div class="packages-grid">
+                <article class="pack reveal">
+                    <div class="pack-name">Starter</div>
+                    <div class="pack-desc">Get moving. Build a real presence with consistent, strategic output.</div>
+                    <div class="pack-price"><span class="amt">$2,995</span><span class="per">/ month</span></div>
+                    <ul>
+                        <li>15 short-form videos</li>
+                        <li>2 film days per month</li>
+                        <li>Scripting &amp; hooks</li>
+                        <li>Full editing &amp; posting</li>
+                        <li>Monthly strategy call</li>
+                    </ul>
+                </article>
+                <article class="pack featured reveal reveal-delay-1">
+                    <div class="pack-name">Growth</div>
+                    <div class="pack-desc">For brands ready to dominate their local market.</div>
+                    <div class="pack-price"><span class="amt">$3,595</span><span class="per">/ month</span></div>
+                    <ul>
+                        <li>20 short-form videos</li>
+                        <li>2–3 film days per month</li>
+                        <li>Scripting &amp; hooks</li>
+                        <li>Full editing &amp; posting</li>
+                        <li>Monthly strategy call</li>
+                        <li>Priority iteration</li>
+                    </ul>
+                </article>
+                <article class="pack reveal reveal-delay-2">
+                    <div class="pack-name">Authority</div>
+                    <div class="pack-desc">Go all in. The velocity to own your category.</div>
+                    <div class="pack-price"><span class="amt">$4,895</span><span class="per">/ month</span></div>
+                    <ul>
+                        <li>30 short-form videos</li>
+                        <li>3 film days per month</li>
+                        <li>Scripting &amp; hooks</li>
+                        <li>Full editing &amp; posting</li>
+                        <li>Monthly strategy call</li>
+                        <li>Dedicated creative lead</li>
+                    </ul>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-kicker reveal"><span class="kicker kicker--cream"><span class="dot"></span> Let's talk</span></div>
+            <h1 class="cta-title reveal reveal-delay-1">
+                Ready to be <span class="ital">impossible</span> to ignore?
+            </h1>
+            <p class="cta-sub reveal reveal-delay-2">
+                Book a 30-minute discovery call. We'll learn your brand, map a strategy, and show you exactly what's possible. No slides, no pressure — just a real conversation.
+            </p>
+            <a href="https://calendly.com/d/cxrq-w97-n9c/discovery-call-your-social-hq" target="_blank" rel="noopener" class="cta-btn reveal reveal-delay-3">
+                Book a discovery call
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+            </a>
+            <p class="cta-alt reveal reveal-delay-3">Or email us — <a href="mailto:zach@yoursocialheadquarters.com">zach@yoursocialheadquarters.com</a></p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container foot">
+            <span class="brand-foot">Your Social HQ</span>
+            <span>© Your Social HQ · All rights reserved</span>
+            <span><a href="mailto:zach@yoursocialheadquarters.com">zach@yoursocialheadquarters.com</a></span>
+        </div>
+    </footer>
+
+    <script>
+        /* ============================================================
+           NAV + REVEAL
+           ============================================================ */
+        (function() {
+            const nav = document.getElementById('nav');
+            let ticking = false;
+            window.addEventListener('scroll', () => {
+                if (!ticking) {
+                    requestAnimationFrame(() => {
+                        nav.classList.toggle('scrolled', window.scrollY > 24);
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            }, { passive: true });
+        })();
+
+        (function() {
+            const els = document.querySelectorAll('.reveal');
+            if (!('IntersectionObserver' in window)) {
+                els.forEach(el => el.classList.add('is-visible'));
+                return;
+            }
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) {
+                        e.target.classList.add('is-visible');
+                        io.unobserve(e.target);
+                    }
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+            els.forEach(el => io.observe(el));
+        })();
+
+        /* ============================================================
+           HERO WORD CYCLER
+           ============================================================ */
+        (function() {
+            const words = [
+                { text: 'brands', bg: '#FF2D6B' },
+                { text: 'realtors', bg: '#0A0A0E' },
+                { text: 'chefs', bg: '#FF6B2C' },
+                { text: 'coaches', bg: '#7C3AED' },
+                { text: 'studios', bg: '#FF2D6B' },
+                { text: 'restaurants', bg: '#0A0A0E' },
+                { text: 'operators', bg: '#FF6B2C' }
+            ];
+            const swap = document.getElementById('cycle-word');
+            const text = document.getElementById('cycle-text');
+            if (!swap || !text) return;
+
+            let i = 0;
+            function cycle() {
+                swap.classList.add('out');
+                setTimeout(() => {
+                    i = (i + 1) % words.length;
+                    text.textContent = words[i].text;
+                    swap.style.setProperty('--cycle-bg', words[i].bg);
+                    swap.classList.remove('out');
+                }, 650);
+            }
+
+            const style = document.createElement('style');
+            style.textContent = `
+                .hero-title .row--cycle::before {
+                    background: var(--cycle-bg, #FF2D6B) !important;
+                    transition: background 600ms cubic-bezier(0.16, 1, 0.3, 1);
+                }
+            `;
+            document.head.appendChild(style);
+            swap.style.setProperty('--cycle-bg', words[0].bg);
+
+            setTimeout(() => { setInterval(cycle, 2400); }, 1600);
+        })();
+
+        /* ============================================================
+           PROCESS HORIZONTAL SCROLL HIJACK
+           ============================================================ */
+        (function() {
+            const outer = document.getElementById('process-outer');
+            const rail = document.getElementById('process-rail');
+            const progressDots = document.querySelectorAll('#process-progress .progress-dot');
+            if (!outer || !rail) return;
+
+            const cards = rail.querySelectorAll('.process-card');
+            if (cards.length === 0) return;
+
+            function update() {
+                const rect = outer.getBoundingClientRect();
+                const vh = window.innerHeight;
+                const totalHeight = outer.offsetHeight - vh; // scroll distance
+                const scrolled = Math.max(0, -rect.top);
+                const progress = Math.min(1, Math.max(0, scrolled / totalHeight));
+
+                // Compute rail translate
+                const cardWidth = cards[0].offsetWidth;
+                const gap = parseInt(getComputedStyle(cards[0]).marginRight) || 0;
+                const totalRail = (cardWidth + gap) * (cards.length - 1) + (window.innerWidth - cardWidth) * 0;
+                // Actual travel: rail total width minus viewport width
+                const railTotalWidth = rail.scrollWidth - window.innerWidth + 48;
+                const travel = Math.max(0, railTotalWidth);
+
+                rail.style.transform = `translateX(-${progress * travel}px)`;
+
+                // Active dot
+                const activeIdx = Math.min(cards.length - 1, Math.floor(progress * cards.length));
+                progressDots.forEach((d, idx) => d.classList.toggle('active', idx === activeIdx));
+            }
+
+            update();
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+        })();
+    </script>
+</body>
+</html>
