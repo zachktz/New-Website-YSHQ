@@ -781,15 +781,17 @@
         }
 
         /* ======================================
-           SERVICES — big typographic list
+           SERVICES — massive typographic list
+           No cards. Big poster numbers + big names.
+           Newspaper-style horizontal rows.
            ====================================== */
         .services {
             background: var(--cream);
             border-top: 1.5px solid var(--ink);
-            padding: clamp(3rem, 5vw, 4.5rem) 0;
+            padding: clamp(3rem, 5vw, 5rem) 0;
         }
         .services-head {
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
             display: grid;
             grid-template-columns: 1.2fr 1fr;
             gap: 3rem;
@@ -819,85 +821,107 @@
             max-width: 42ch;
         }
 
+        /* Typographic list — rows separated by pink rules */
         .svc-list {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.25rem;
-            border-top: 1.5px solid var(--ink);
-            padding-top: 1.5rem;
+            gap: 0;
+            border-top: 2px solid var(--pink);
+            border-bottom: 2px solid var(--pink);
         }
         .svc-row {
-            display: flex;
-            flex-direction: column;
-            gap: 0.625rem;
-            padding: 1.5rem 1.5rem 1.5rem;
-            background: var(--cream-soft);
-            border: 1.5px solid var(--ink);
-            border-radius: 16px;
-            position: relative;
-            overflow: hidden;
-            transition: background-color 320ms var(--ease-snap),
-                        color 320ms var(--ease-snap),
-                        transform 320ms var(--ease-snap),
-                        box-shadow 320ms var(--ease-snap);
-            cursor: default;
-        }
-        .svc-row:hover {
-            background: var(--ink);
-            color: var(--cream);
-            transform: translateY(-4px);
-            box-shadow: 0 18px 36px -16px rgba(10, 10, 14, 0.3);
-        }
-        .svc-row:hover .svc-num,
-        .svc-row:hover .svc-title,
-        .svc-row:hover .svc-desc { color: var(--cream); }
-        .svc-row:hover .svc-num { color: var(--pink); }
-        .svc-row:hover .svc-arrow { color: var(--pink); transform: translateX(4px); }
-
-        .svc-top {
-            display: flex;
+            display: grid;
+            grid-template-columns: 110px 1fr minmax(320px, 38%) auto;
+            gap: clamp(1.5rem, 3vw, 3rem);
             align-items: center;
-            justify-content: space-between;
-            margin-bottom: 0.125rem;
+            padding: clamp(1.5rem, 2.25vw, 2.5rem) 0.25rem;
+            border-bottom: 1px solid var(--line-strong);
+            position: relative;
+            cursor: default;
+            transition: padding 420ms var(--ease-snap);
         }
+        .svc-row { border-bottom: 1px solid rgba(255, 45, 107, 0.22); }
+        .svc-row:last-child { border-bottom: 0; }
+
+        /* Hover wash — subtle pink background bleed, ink unaffected */
+        .svc-row::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--pink-wash);
+            opacity: 0;
+            transition: opacity 420ms var(--ease-snap);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .svc-row:hover::before { opacity: 1; }
+        .svc-row > * { position: relative; z-index: 1; }
+        .svc-row:hover { padding-left: 1.25rem; }
+        .svc-row:hover .svc-title { transform: translateX(4px); }
+        .svc-row:hover .svc-arrow { transform: translateX(6px); }
+
         .svc-num {
-            font-family: 'Instrument Sans', sans-serif;
-            font-size: 0.7rem;
-            font-weight: 700;
-            letter-spacing: 0.16em;
-            color: var(--pink);
-            text-transform: uppercase;
-            transition: color 320ms;
-        }
-        .svc-arrow {
             font-family: 'Archivo Black', sans-serif;
-            font-size: 1.25rem;
-            color: var(--ink);
-            line-height: 1;
-            transition: color 320ms var(--ease-snap), transform 320ms var(--ease-snap);
+            font-size: clamp(3rem, 5.5vw, 5.5rem);
+            line-height: 0.85;
+            letter-spacing: -0.05em;
+            color: var(--pink);
+            transition: color 320ms var(--ease-snap), transform 420ms var(--ease-snap);
         }
+
         .svc-title {
             font-family: 'Archivo Black', sans-serif;
-            font-size: clamp(1.375rem, 1.7vw, 1.75rem);
-            line-height: 1;
-            letter-spacing: -0.025em;
+            font-size: clamp(2rem, 4.5vw, 4.5rem);
+            line-height: 0.92;
+            letter-spacing: -0.04em;
             text-transform: uppercase;
             color: var(--ink);
-            transition: color 320ms;
+            transition: transform 420ms var(--ease-snap);
         }
         .svc-title .ital {
             font-family: 'Instrument Serif', serif;
             font-style: italic;
             font-weight: 400;
             text-transform: none;
-            letter-spacing: -0.01em;
+            letter-spacing: -0.015em;
+            color: var(--pink);
             font-size: 1.05em;
         }
+
+        .svc-body {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .svc-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-size: clamp(0.95rem, 1.1vw, 1.1rem);
+            color: var(--pink);
+            line-height: 1;
+        }
+        .svc-tag::before {
+            content: '';
+            width: 1rem;
+            height: 1.5px;
+            background: var(--pink);
+        }
         .svc-desc {
-            font-size: 0.875rem;
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.95rem;
             line-height: 1.5;
             color: var(--ink-muted);
-            transition: color 320ms;
+        }
+
+        .svc-arrow {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 1.75rem;
+            color: var(--pink);
+            line-height: 1;
+            flex-shrink: 0;
+            transition: transform 420ms var(--ease-snap), color 320ms;
         }
 
         /* ======================================
@@ -2271,7 +2295,6 @@
                 grid-template-columns: 1fr;
                 gap: 1.25rem;
             }
-            .svc-row { grid-template-columns: 72px 1fr 1.5fr 72px; }
             .packages-grid { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
             .pack { padding: 1.75rem 1.5rem 1.75rem; }
             .diff-grid { grid-template-columns: 1fr 1fr; }
@@ -2293,8 +2316,8 @@
             .pack-videos-num { font-size: 1.75rem; }
             .pack-name { font-size: 0.875rem; }
             .pack-no { font-size: 1.75rem; }
-            .svc-row { grid-template-columns: 64px 1fr 64px; }
-            .svc-desc { display: none; }
+            .svc-num { font-size: clamp(2.25rem, 4vw, 2.75rem); }
+            .svc-title { font-size: clamp(1.375rem, 2vw, 1.75rem); }
             .stat { grid-template-columns: 1fr; gap: 1.5rem; }
             .stat .num { text-align: left; }
             /* Nav: keep brand on one line, tighten gap */
@@ -2315,11 +2338,28 @@
         @media (max-width: 880px) {
             .team-grid { grid-template-columns: 1fr; max-width: 520px; margin: 0 auto; }
             .packages-grid { grid-template-columns: 1fr; }
-            .svc-list { grid-template-columns: 1fr 1fr; }
             .numbers-grid { grid-template-columns: 1fr 1fr; }
             .numbers-grid .stat:nth-child(3) { grid-column: 1 / -1; }
             /* Story stamp: get out of the way on narrower layouts */
             .story-stamp { top: auto; right: 0; bottom: -12px; width: 72px; height: 72px; }
+            /* Services: stack title + body below into one column at right of num (zigzag off) */
+            .svc-row,
+            .svc-row:nth-child(even) {
+                grid-template-columns: 90px 1fr auto;
+                grid-template-rows: auto auto;
+                gap: 0.5rem 1.5rem;
+                text-align: left;
+            }
+            .svc-row .svc-num,
+            .svc-row:nth-child(even) .svc-num { grid-row: 1 / 3; grid-column: 1; font-size: clamp(2.75rem, 6vw, 4rem); align-self: center; }
+            .svc-row .svc-title,
+            .svc-row:nth-child(even) .svc-title { grid-row: 1; grid-column: 2; transform: none; }
+            .svc-row .svc-body,
+            .svc-row:nth-child(even) .svc-body { grid-row: 2; grid-column: 2; margin-top: 0.5rem; align-items: flex-start; }
+            .svc-row .svc-arrow,
+            .svc-row:nth-child(even) .svc-arrow { grid-row: 1 / 3; grid-column: 3; align-self: center; font-size: 1.5rem; transform: none; }
+            .svc-row:nth-child(even) .svc-tag { flex-direction: row; }
+            .svc-title { font-size: clamp(2rem, 6vw, 3rem); }
         }
 
         /* --- Mobile (<= 720px) --- */
@@ -2366,12 +2406,42 @@
             .story-pull { padding: 1.5rem 1.25rem 1.5rem 1.5rem; font-size: 1.1rem; margin: 1.75rem 0; }
             .story-pull::before { font-size: 2.5rem; }
 
-            /* Services — stack fully */
-            .svc-list { grid-template-columns: 1fr; gap: 0.875rem; border-top: 1.5px solid var(--ink); padding-top: 1.25rem; }
-            .svc-row { padding: 1.25rem 1.25rem; gap: 0.625rem; display: flex; flex-direction: column; }
-            .svc-title { font-size: clamp(1.5rem, 7vw, 2rem); }
-            .svc-num { font-size: 0.7rem; }
-            .svc-desc { font-size: 0.875rem; }
+            /* Services — stack layout vertically on mobile */
+            .svc-list { border-top-width: 1.5px; border-bottom-width: 1.5px; }
+            .svc-row {
+                grid-template-columns: auto 1fr auto;
+                grid-template-rows: auto auto;
+                gap: 0.25rem 1rem;
+                padding: 1.25rem 0.25rem;
+                align-items: start;
+            }
+            .svc-row:hover { padding-left: 0.25rem; }
+            .svc-num {
+                grid-row: 1 / 3;
+                grid-column: 1;
+                font-size: clamp(2.5rem, 12vw, 3.5rem);
+                align-self: center;
+            }
+            .svc-title {
+                grid-row: 1;
+                grid-column: 2;
+                font-size: clamp(1.75rem, 9vw, 2.5rem);
+                line-height: 0.95;
+            }
+            .svc-body {
+                grid-row: 2;
+                grid-column: 2;
+                gap: 0.35rem;
+                margin-top: 0.375rem;
+            }
+            .svc-tag { font-size: 0.85rem; }
+            .svc-desc { font-size: 0.88rem; }
+            .svc-arrow {
+                grid-row: 1 / 3;
+                grid-column: 3;
+                align-self: center;
+                font-size: 1.25rem;
+            }
 
             /* Process */
             .process-header { padding-bottom: 1.5rem; }
@@ -2645,19 +2715,21 @@
         .cursor-ring {
             position: fixed;
             top: 0; left: 0;
-            width: 40px; height: 40px;
-            border: 1.5px solid rgba(245, 241, 232, 0.45);
+            width: 36px; height: 36px;
+            border: 1.5px solid var(--pink);
             border-radius: 50%;
             pointer-events: none;
             z-index: 9998;
             transform: translate(-50%, -50%);
+            opacity: 0.75;
             transition: width 300ms var(--ease-snap), height 300ms var(--ease-snap), border-color 300ms, background 300ms, opacity 300ms;
         }
         .cursor.expand { width: 4px; height: 4px; }
         .cursor-ring.expand {
-            width: 76px; height: 76px;
-            border-color: var(--purple);
-            background: rgba(124, 58, 237, 0.12);
+            width: 72px; height: 72px;
+            border-color: var(--pink);
+            background: rgba(255, 45, 107, 0.1);
+            opacity: 1;
         }
         .cursor-ring.hide { opacity: 0; }
         @media (pointer: coarse) {
@@ -2870,36 +2942,60 @@
             </div>
 
             <div class="svc-list">
-                <div class="svc-row reveal">
-                    <div class="svc-top"><span class="svc-num">01</span><span class="svc-arrow">→</span></div>
+                <article class="svc-row reveal">
+                    <span class="svc-num">01</span>
                     <h3 class="svc-title">Scripting</h3>
-                    <p class="svc-desc">Hook-engineered scripts built around what's performing in your niche.</p>
-                </div>
-                <div class="svc-row reveal reveal-delay-1">
-                    <div class="svc-top"><span class="svc-num">02</span><span class="svc-arrow">→</span></div>
+                    <div class="svc-body">
+                        <span class="svc-tag">Hook-crafted</span>
+                        <p class="svc-desc">Hook-engineered scripts built around what's performing in your niche.</p>
+                    </div>
+                    <span class="svc-arrow">→</span>
+                </article>
+                <article class="svc-row reveal">
+                    <span class="svc-num">02</span>
                     <h3 class="svc-title">Filming</h3>
-                    <p class="svc-desc">On-location film days with a full crew. Scroll-stopping by design.</p>
-                </div>
-                <div class="svc-row reveal reveal-delay-2">
-                    <div class="svc-top"><span class="svc-num">03</span><span class="svc-arrow">→</span></div>
+                    <div class="svc-body">
+                        <span class="svc-tag">On-location</span>
+                        <p class="svc-desc">Full-crew film days. Scroll-stopping by design.</p>
+                    </div>
+                    <span class="svc-arrow">→</span>
+                </article>
+                <article class="svc-row reveal">
+                    <span class="svc-num">03</span>
                     <h3 class="svc-title">Editing</h3>
-                    <p class="svc-desc">Fast, sharp edits by our in-house team. Sound, pacing, captions.</p>
-                </div>
-                <div class="svc-row reveal">
-                    <div class="svc-top"><span class="svc-num">04</span><span class="svc-arrow">→</span></div>
+                    <div class="svc-body">
+                        <span class="svc-tag">In-house</span>
+                        <p class="svc-desc">Sharp edits by our in-house team. Sound, pacing, captions.</p>
+                    </div>
+                    <span class="svc-arrow">→</span>
+                </article>
+                <article class="svc-row reveal">
+                    <span class="svc-num">04</span>
                     <h3 class="svc-title">Posting</h3>
-                    <p class="svc-desc">Schedule, tag, and optimize every upload. Consistency compounds.</p>
-                </div>
-                <div class="svc-row reveal reveal-delay-1">
-                    <div class="svc-top"><span class="svc-num">05</span><span class="svc-arrow">→</span></div>
+                    <div class="svc-body">
+                        <span class="svc-tag">Always-on</span>
+                        <p class="svc-desc">Schedule, tag, optimize every upload. Consistency compounds.</p>
+                    </div>
+                    <span class="svc-arrow">→</span>
+                </article>
+                <article class="svc-row reveal">
+                    <span class="svc-num">05</span>
                     <h3 class="svc-title">Strategy</h3>
-                    <p class="svc-desc">Monthly performance reviews. Strategy evolves with live data.</p>
-                </div>
-                <div class="svc-row reveal reveal-delay-2">
-                    <div class="svc-top"><span class="svc-num">06</span><span class="svc-arrow">→</span></div>
+                    <div class="svc-body">
+                        <span class="svc-tag">Data-led</span>
+                        <p class="svc-desc">Monthly performance reviews. Strategy evolves with live data.</p>
+                    </div>
+                    <span class="svc-arrow">→</span>
+                </article>
+                <article class="svc-row reveal">
+                    <span class="svc-num">06</span>
                     <h3 class="svc-title"><span class="ital">AI</span> Intel</h3>
-                    <p class="svc-desc">Proprietary AI monitors your niche 24/7. Every script starts from an edge.</p>
-                </div>
+                    <div class="svc-body">
+                        <span class="svc-tag">Proprietary</span>
+                        <p class="svc-desc">AI monitors your niche 24/7. Every script starts from an edge.</p>
+                    </div>
+                    <span class="svc-arrow">→</span>
+                </article>
             </div>
         </div>
     </section>
