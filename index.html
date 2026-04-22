@@ -2348,9 +2348,11 @@
             .hero-meta-item { flex: 0 0 auto; min-width: 45%; }
             .hero-sticker { display: none; }
 
-            /* Ticker */
-            .ticker-track { font-size: clamp(1.75rem, 9vw, 2.75rem); gap: 2.5rem; }
+            /* Ticker — faster scroll on mobile */
+            .ticker-track { font-size: clamp(1.75rem, 9vw, 2.75rem); gap: 2.5rem; animation-duration: 16s; }
             .ticker-track span { gap: 2.5rem; }
+            .cta-ticker-track { animation-duration: 14s; }
+            .cta-ticker--bot .cta-ticker-track { animation-duration: 18s; }
 
             /* Story — stack gracefully */
             .story-stamp { display: none; }
@@ -3309,6 +3311,7 @@
         (function() {
             const words = [
                 { text: 'brands', bg: '#FF2D6B' },
+                { text: 'you', bg: '#7C3AED' },
                 { text: 'realtors', bg: '#0A0A0E' },
                 { text: 'chefs', bg: '#FF6B2C' },
                 { text: 'coaches', bg: '#7C3AED' },
