@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Social HQ — We Make Brands Impossible to Ignore</title>
-    <meta name="description" content="Your Social HQ is a short-form video studio. Strategy, scripting, filming, editing, posting — all handled by a team that treats your brand like our own.">
+    <title>Your Social HQ · We Make Brands Impossible to Ignore</title>
+    <meta name="description" content="Your Social HQ is a short-form video studio. Strategy, scripting, filming, editing, posting. All handled by a team that treats your brand like our own.">
 
     <!-- Favicons -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -15,19 +15,19 @@
     <!-- Open Graph / Twitter -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://yoursocialheadquarters.com/">
-    <meta property="og:title" content="Your Social HQ — We Make Brands Impossible to Ignore">
-    <meta property="og:description" content="A short-form video studio for brands that mean business. Strategy, scripting, filming, editing, posting — handled end to end.">
+    <meta property="og:title" content="Your Social HQ · We Make Brands Impossible to Ignore">
+    <meta property="og:description" content="A short-form video studio for brands that mean business. Strategy, scripting, filming, editing, posting. Handled end to end.">
     <meta property="og:image" content="https://yoursocialheadquarters.com/og-image.png">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Your Social HQ — We Make Brands Impossible to Ignore">
+    <meta property="og:image:alt" content="Your Social HQ · We Make Brands Impossible to Ignore">
     <meta property="og:site_name" content="Your Social HQ">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Your Social HQ — We Make Brands Impossible to Ignore">
+    <meta name="twitter:title" content="Your Social HQ · We Make Brands Impossible to Ignore">
     <meta name="twitter:description" content="A short-form video studio for brands that mean business.">
     <meta name="twitter:image" content="https://yoursocialheadquarters.com/og-image.png">
-    <meta name="twitter:image:alt" content="Your Social HQ — We Make Brands Impossible to Ignore">
+    <meta name="twitter:image:alt" content="Your Social HQ · We Make Brands Impossible to Ignore">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
@@ -1402,12 +1402,143 @@
 
         .team-note {
             margin-top: 1.75rem;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 720px;
             text-align: center;
             font-family: 'Instrument Sans', sans-serif;
             font-size: 0.85rem;
             color: var(--ink-muted);
         }
         .team-note strong { color: var(--ink); font-weight: 600; }
+
+        /* ======================================
+           YOUR TEAM — vertical founder cards, centered
+           ====================================== */
+        .yourteam {
+            background: var(--cream);
+            padding: var(--sec-y) 0 clamp(3rem, 5vw, 4.5rem);
+            position: relative;
+            overflow: hidden;
+        }
+        .yourteam-head {
+            text-align: center;
+            max-width: 780px;
+            margin: 0 auto clamp(2.5rem, 5vw, 4rem);
+        }
+        .yourteam-head .kicker { justify-content: center; }
+        .yourteam-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            line-height: 0.95;
+            letter-spacing: -0.035em;
+            text-transform: uppercase;
+            color: var(--ink);
+            margin: 1.25rem 0 1rem;
+        }
+        .yourteam-title .ital {
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            text-transform: none;
+            color: var(--pink);
+        }
+        .yourteam-sub {
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-size: clamp(1.125rem, 1.8vw, 1.5rem);
+            color: var(--ink-muted);
+            line-height: 1.4;
+        }
+        .yourteam .team-grid {
+            max-width: 1040px;
+        }
+        .member--vertical {
+            grid-template-columns: 1fr;
+            grid-template-rows: auto 1fr;
+        }
+        .member--vertical .member-visual {
+            min-height: 0;
+            aspect-ratio: 4 / 3;
+            width: 100%;
+        }
+        .member--vertical .member-info {
+            padding: 1.75rem 1.75rem 2rem;
+        }
+        .member-roletag {
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            color: var(--ink-muted);
+            margin-bottom: 1rem;
+            padding-bottom: 0.875rem;
+            border-bottom: 1px solid var(--line);
+        }
+        .member--vertical .member-name {
+            font-size: clamp(1.75rem, 2.6vw, 2.4rem);
+        }
+        .member--vertical .member-bio {
+            font-size: 0.95rem;
+        }
+        .team-pull {
+            display: block;
+            max-width: 920px;
+            margin: clamp(2.5rem, 5vw, 4rem) auto clamp(1.75rem, 3vw, 2.5rem);
+            padding: 2rem 1.5rem;
+            border-top: 1.5px solid var(--ink);
+            border-bottom: 1.5px solid var(--ink);
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-size: clamp(1.35rem, 2.2vw, 1.9rem);
+            line-height: 1.3;
+            color: var(--ink);
+            letter-spacing: -0.01em;
+            text-align: center;
+        }
+        .team-pull-author {
+            display: block;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--line);
+            font-family: 'Instrument Sans', sans-serif;
+            font-style: normal;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--pink);
+        }
+        .yourteam-stamp {
+            position: absolute;
+            top: clamp(1.5rem, 3vw, 2.5rem);
+            right: clamp(1.5rem, 3vw, 2.5rem);
+            width: clamp(88px, 10vw, 120px);
+            height: clamp(88px, 10vw, 120px);
+            pointer-events: none;
+            z-index: 2;
+        }
+        .yourteam-stamp svg { width: 100%; height: 100%; overflow: visible; }
+        .yourteam-stamp-ring { animation: spin-slow 22s linear infinite; transform-origin: center; }
+        .yourteam-stamp text {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 11px;
+            letter-spacing: 1.2px;
+            fill: var(--ink);
+            text-transform: uppercase;
+        }
+        .yourteam-stamp-center {
+            position: absolute;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-size: clamp(1.25rem, 1.8vw, 1.6rem);
+            color: var(--pink);
+            line-height: 1;
+        }
 
         /* ======================================
            NUMBERS — giant moments
@@ -2770,10 +2901,9 @@
                 <span>Your Social HQ</span>
             </a>
             <ul class="nav-links">
-                <li><a href="#story">Story</a></li>
                 <li><a href="#services">Services</a></li>
-                <li><a href="#process">Process</a></li>
-                <li><a href="#packages">Packages</a></li>
+                <li><a href="#experience">The Experience</a></li>
+                <li><a href="#team">Team</a></li>
             </ul>
             <a href="https://calendly.com/d/cxrq-w97-n9c/discovery-call-your-social-hq" target="_blank" rel="noopener" class="nav-cta">
                 Book a call
@@ -2801,7 +2931,7 @@
                 </h1>
 
                 <p class="hero-sub">
-                    <strong>Your Social HQ</strong> is an end-to-end content marketing team. We research, script, film, edit and post social media content that builds brands and converts clients.
+                    You know you should be on social media. You don't have the time. None of our clients do. That's why we exist.
                 </p>
 
                 <div class="hero-ctas">
@@ -2855,90 +2985,12 @@
     <!-- Ticker marquee -->
     <div class="ticker" aria-hidden="true">
         <div class="ticker-track">
-            <span>Short-form video <span class="ital">for</span> brands that mean business</span>
-            <span>Short-form video <span class="ital">for</span> brands that mean business</span>
-            <span>Short-form video <span class="ital">for</span> brands that mean business</span>
-            <span>Short-form video <span class="ital">for</span> brands that mean business</span>
+            <span>Build a brand, not just a following.</span>
+            <span>Build a brand, not just a following.</span>
+            <span>Build a brand, not just a following.</span>
+            <span>Build a brand, not just a following.</span>
         </div>
     </div>
-
-    <!-- Story -->
-    <section class="story" id="story">
-        <div class="container">
-            <div class="story-grid">
-                <div class="story-lead">
-                    <div class="story-stamp" aria-hidden="true">
-                        <svg viewBox="0 0 96 96">
-                            <defs>
-                                <path id="story-stamp-path" d="M 48, 48 m -34, 0 a 34,34 0 1,1 68,0 a 34,34 0 1,1 -68,0" />
-                            </defs>
-                            <g class="story-stamp-ring">
-                                <text>
-                                    <textPath href="#story-stamp-path" startOffset="0">
-                                        ★ FOUNDER RUN ★ FOUNDER RUN ★
-                                    </textPath>
-                                </text>
-                            </g>
-                        </svg>
-                        <div class="story-stamp-center">HQ</div>
-                    </div>
-                    <div class="story-kicker reveal"><span class="kicker"><span class="dot"></span> Our story</span></div>
-                    <h2 class="story-title reveal">
-                        Two lifelong friends. <span class="ital">One</span> vision.
-                    </h2>
-                </div>
-
-                <div class="story-prose">
-                    <p class="reveal">
-                        Before Your Social HQ, we'd already been <span class="hl">building audiences for other people</span> for years. Zach was leading social at <strong>Monster Energy</strong> — working across some of the most content-forward brands on the planet. Carson had been in the space just as long, obsessed with what actually makes short-form perform.
-                    </p>
-                    <p class="reveal reveal-delay-1">
-                        The pattern we kept seeing: local operators with great businesses, real stories, real reputations — but totally invisible on social. Not because they didn't deserve attention. Because nobody was building for them <strong>the way the big brands get built for</strong>.
-                    </p>
-
-                    <blockquote class="story-pull reveal reveal-delay-2">
-                        Same rigor the Fortune 500 gets — applied to the brands shaping their own communities.
-                        <span class="story-pull-author">— The thesis</span>
-                    </blockquote>
-
-                    <p class="reveal reveal-delay-2">
-                        So we built it ourselves. Same creative standards, same hands-on obsession — applied to the brands that mean business in their own markets.
-                    </p>
-                    <p class="reveal reveal-delay-3">
-                        <strong>And yes — we've been friends for most of our lives.</strong> That's not a coincidence. You don't build something like this with just anyone.
-                    </p>
-                </div>
-            </div>
-
-            <div class="team-grid story-founders">
-                <article class="member reveal">
-                    <div class="member-visual">
-                        <img src="zach.jpg" alt="Zach Katz">
-                    </div>
-                    <div class="member-info">
-                        <div class="member-role">Co-Founder</div>
-                        <h3 class="member-name">Zach Katz</h3>
-                        <p class="member-bio">Zach spent years on the social team at <strong>Monster Energy</strong>, one of the most aggressive content brands in the world, where he ran the Monster Army account and grew it from 60K to 350K followers. He worked with brands like Reign Bodyfuel on content strategy, traveled the country producing content, and sat in monthly meetings with the heads of social at Instagram and TikTok. He left Monster with a firsthand understanding of every major platform and what it actually takes to grow an account.</p>
-                    </div>
-                </article>
-
-                <article class="member reveal reveal-delay-1">
-                    <div class="member-visual">
-                        <div class="letter">C</div>
-                    </div>
-                    <div class="member-info">
-                        <div class="member-role">Co-Founder</div>
-                        <h3 class="member-name">Carson Fassett</h3>
-                        <p class="member-bio">Carson has been in sales and marketing since graduating high school. Over the past seven years he's generated leads for small businesses by building end-to-end funnels and running paid channels. That work helped scale <strong>Mastiff Moving</strong> in San Diego from zero to three trucks and six-figure months. One problem kept showing up everywhere: when the budget ran out, the results ran out with it. The only marketing that kept paying was a brand people actually trust, built on social. That's why he co-founded YSHQ, and that's the playbook he runs for clients today.</p>
-                    </div>
-                </article>
-            </div>
-
-            <p class="team-note reveal reveal-delay-2">
-                <strong>Plus our crew</strong> — editors, strategists, &amp; content innovators behind the scenes on every account.
-            </p>
-        </div>
-    </section>
 
     <!-- Services — big typographic list -->
     <section class="services" id="services">
@@ -2947,66 +2999,66 @@
                 <div class="reveal">
                     <span class="kicker" style="margin-bottom: 1.5rem; display: inline-flex;"><span class="dot"></span> What we do</span>
                     <h2 class="services-title">
-                        Short-form, <span class="ital">handled</span> end to end.
+                        A few hours on camera is all that stands between you and a brand people <span class="ital">remember</span>.
                     </h2>
                 </div>
                 <p class="services-lead reveal reveal-delay-1">
-                    Strategy, scripting, filming, editing, posting, reporting. You show up — we handle the rest.
+                    You schedule the film days. We handle the rest.
                 </p>
             </div>
 
             <div class="svc-list">
                 <article class="svc-row reveal">
                     <span class="svc-num">01</span>
-                    <h3 class="svc-title">Scripting</h3>
+                    <h3 class="svc-title">Research</h3>
                     <div class="svc-body">
-                        <span class="svc-tag">Hook-crafted</span>
-                        <p class="svc-desc">Hook-engineered scripts built around what's performing in your niche.</p>
+                        <span class="svc-tag">Niche-driven</span>
+                        <p class="svc-desc">Research starts every project. Our proprietary AI scans your niche daily, building a database of viral outliers, top hooks, and winning formats.</p>
                     </div>
                     <span class="svc-arrow">→</span>
                 </article>
                 <article class="svc-row reveal">
                     <span class="svc-num">02</span>
-                    <h3 class="svc-title">Filming</h3>
+                    <h3 class="svc-title">Scripting</h3>
                     <div class="svc-body">
-                        <span class="svc-tag">On-location</span>
-                        <p class="svc-desc">Full-crew film days. Scroll-stopping by design.</p>
+                        <span class="svc-tag">Retention-driven</span>
+                        <p class="svc-desc">Scripts structured for retention. Strong hook, your expertise, true to your voice.</p>
                     </div>
                     <span class="svc-arrow">→</span>
                 </article>
                 <article class="svc-row reveal">
                     <span class="svc-num">03</span>
-                    <h3 class="svc-title">Editing</h3>
+                    <h3 class="svc-title">Filming</h3>
                     <div class="svc-body">
-                        <span class="svc-tag">In-house</span>
-                        <p class="svc-desc">Sharp edits by our in-house team. Sound, pacing, captions.</p>
+                        <span class="svc-tag">On-location</span>
+                        <p class="svc-desc">We come to you. Cameras, mics, lighting, and scripts. You just deliver the lines.</p>
                     </div>
                     <span class="svc-arrow">→</span>
                 </article>
                 <article class="svc-row reveal">
                     <span class="svc-num">04</span>
-                    <h3 class="svc-title">Posting</h3>
+                    <h3 class="svc-title">Editing</h3>
                     <div class="svc-body">
-                        <span class="svc-tag">Always-on</span>
-                        <p class="svc-desc">Schedule, tag, optimize every upload. Consistency compounds.</p>
+                        <span class="svc-tag">Fast turnaround</span>
+                        <p class="svc-desc">Our in-house editing team turns raw footage into polished videos within 72 hours.</p>
                     </div>
                     <span class="svc-arrow">→</span>
                 </article>
                 <article class="svc-row reveal">
                     <span class="svc-num">05</span>
-                    <h3 class="svc-title">Strategy</h3>
+                    <h3 class="svc-title">Posting</h3>
                     <div class="svc-body">
-                        <span class="svc-tag">Data-led</span>
-                        <p class="svc-desc">Monthly performance reviews. Strategy evolves with live data.</p>
+                        <span class="svc-tag">Hands-off</span>
+                        <p class="svc-desc">We schedule, caption, and tag every post at peak times. You never think about posting again.</p>
                     </div>
                     <span class="svc-arrow">→</span>
                 </article>
                 <article class="svc-row reveal">
                     <span class="svc-num">06</span>
-                    <h3 class="svc-title"><span class="ital">AI</span> Intel</h3>
+                    <h3 class="svc-title">Strategy</h3>
                     <div class="svc-body">
-                        <span class="svc-tag">Proprietary</span>
-                        <p class="svc-desc">AI monitors your niche 24/7. Every script starts from an edge.</p>
+                        <span class="svc-tag">Reviewed monthly</span>
+                        <p class="svc-desc">We analyze your performance metrics to double down on what's working and correct what isn't.</p>
                     </div>
                     <span class="svc-arrow">→</span>
                 </article>
@@ -3014,193 +3066,159 @@
         </div>
     </section>
 
-    <!-- Process — horizontal scroll hijack -->
-    <section class="process-wrap" id="process">
+    <!-- The Experience -->
+    <section class="process-wrap" id="experience">
         <div class="container">
             <div class="process-header reveal">
                 <div>
-                    <span class="kicker kicker--pink" style="margin-bottom: 1.5rem; display: inline-flex;"><span class="dot"></span> How it works</span>
+                    <span class="kicker kicker--pink" style="margin-bottom: 1.5rem; display: inline-flex;"><span class="dot"></span> The Experience</span>
                     <h2 class="process-title">
-                        From kickoff<br/>to output, <span class="ital">in 4 moves.</span>
+                        We exist to take social <span class="ital">off your plate.</span>
                     </h2>
                 </div>
-                <p class="process-lead">
-                    We've run this enough times to know what breaks. Every step gets content live faster — without sacrificing quality.
-                </p>
             </div>
 
             <div class="step-list">
                 <article class="step-row reveal">
                     <span class="step-number">01</span>
                     <div class="step-content">
-                        <span class="step-tag">Discovery</span>
-                        <h3 class="step-title">Dig in</h3>
-                        <p class="step-desc">Learn your brand, market, audience, and where the gaps are.</p>
+                        <span class="step-tag">Who you are</span>
+                        <h3 class="step-title">Discovery</h3>
+                        <p class="step-desc">30-minute call to learn your business, your audience, and what success on social looks like for you.</p>
                     </div>
                 </article>
                 <article class="step-row reveal reveal-delay-1">
                     <span class="step-number">02</span>
                     <div class="step-content">
-                        <span class="step-tag">Strategy</span>
-                        <h3 class="step-title">Lock pillars</h3>
-                        <p class="step-desc">Custom content pillars. Every video has a job.</p>
+                        <span class="step-tag">Where you stand</span>
+                        <h3 class="step-title">Audit</h3>
+                        <p class="step-desc">We analyze your current Instagram, identify what your brand should be known for, and curate a personalized content plan built around your business and goals.</p>
                     </div>
                 </article>
                 <article class="step-row reveal reveal-delay-2">
                     <span class="step-number">03</span>
                     <div class="step-content">
-                        <span class="step-tag">Production</span>
-                        <h3 class="step-title">Ship it</h3>
-                        <p class="step-desc">Scripts, film days, edits, posting — all handled on cadence.</p>
+                        <span class="step-tag">Custom dashboard</span>
+                        <h3 class="step-title">Onboarding</h3>
+                        <p class="step-desc">Welcome to your social headquarters. Review scripts, watch videos, request revisions, and track performance all in one place.</p>
                     </div>
                 </article>
                 <article class="step-row reveal reveal-delay-3">
                     <span class="step-number">04</span>
                     <div class="step-content">
-                        <span class="step-tag">Growth</span>
-                        <h3 class="step-title">Compound</h3>
-                        <p class="step-desc">Monthly reporting. Constant iteration. Compounding results.</p>
+                        <span class="step-tag">A few hours a month</span>
+                        <h3 class="step-title">Schedule Film Day</h3>
+                        <p class="step-desc">Block 3-4 hours on your calendar twice a month. That's your entire time commitment to build a brand people remember.</p>
+                    </div>
+                </article>
+                <article class="step-row reveal reveal-delay-3">
+                    <span class="step-number">05</span>
+                    <div class="step-content">
+                        <span class="step-tag">Never miss a post</span>
+                        <h3 class="step-title">Build a bank</h3>
+                        <p class="step-desc">We front-load extra film days early so you build a buffer of ready content. Your feed stays weeks ahead of schedule, so vacations and busy weeks never leave gaps.</p>
                     </div>
                 </article>
             </div>
         </div>
     </section>
 
-    <!-- Social Proof — PLACEHOLDER (was Team section; copy TBD: client logos, press mentions, or rotating testimonials) -->
-    <!--
-    <section class="social-proof" id="social-proof">
+    <!-- Your Team -->
+    <section class="yourteam" id="team">
+        <div class="yourteam-stamp" aria-hidden="true">
+            <svg viewBox="0 0 120 120">
+                <defs>
+                    <path id="yourteam-stamp-path" d="M 60, 60 m -44, 0 a 44,44 0 1,1 88,0 a 44,44 0 1,1 -88,0" />
+                </defs>
+                <g class="yourteam-stamp-ring">
+                    <text textLength="276" lengthAdjust="spacing">
+                        <textPath href="#yourteam-stamp-path" startOffset="0">★ FOUNDER RUN ★ FOUNDER RUN ★</textPath>
+                    </text>
+                </g>
+            </svg>
+            <div class="yourteam-stamp-center">HQ</div>
+        </div>
         <div class="container">
-            TBD — client logos / press / testimonials
+            <div class="yourteam-head">
+                <div class="reveal"><span class="kicker"><span class="dot"></span> Your Team</span></div>
+                <h2 class="yourteam-title reveal reveal-delay-1">
+                    Two lifelong friends. One <span class="ital">vision.</span>
+                </h2>
+                <p class="yourteam-sub reveal reveal-delay-2">Both of us on every account. Every week.</p>
+            </div>
+
+            <div class="team-grid">
+                <article class="member member--vertical reveal">
+                    <div class="member-visual">
+                        <img src="zach.jpg" alt="Zach Katz">
+                    </div>
+                    <div class="member-info">
+                        <div class="member-role">Co-Founder</div>
+                        <h3 class="member-name">Zach Katz</h3>
+                        <div class="member-roletag">Strategy · AI Systems · Operations</div>
+                        <p class="member-bio">Zach spent years on the social team at <strong>Monster Energy</strong>, where he grew the Monster Army Instagram from 40K to 350K followers. He traveled the country producing content, sat in monthly meetings with the heads of social at Instagram and TikTok, and advised on content strategy for Reign Bodyfuel. He left with insider knowledge of every major platform, plus the scripts, systems, and AI tools to put it to work.</p>
+                    </div>
+                </article>
+
+                <article class="member member--vertical reveal reveal-delay-1">
+                    <div class="member-visual">
+                        <div class="letter">C</div>
+                    </div>
+                    <div class="member-info">
+                        <div class="member-role">Co-Founder</div>
+                        <h3 class="member-name">Carson Fassett</h3>
+                        <div class="member-roletag">Creative · Production · Client Partnerships</div>
+                        <p class="member-bio">Carson started in sales and marketing straight out of high school. Over the past seven years, he's generated leads for small businesses by building funnels and running paid channels. That work scaled <strong>Mastiff Moving</strong> from zero to three trucks and hit six-figure months. He learned that every paid channel has the same flaw: when the budget stops, so do results. The only marketing that keeps paying is a brand people trust.</p>
+                    </div>
+                </article>
+            </div>
+
+            <blockquote class="team-pull reveal reveal-delay-2">
+                The systems Fortune 500 brands pay for. Built for San Diego service businesses.
+                <span class="team-pull-author">The thesis</span>
+            </blockquote>
+
+            <p class="team-note reveal reveal-delay-2">
+                <strong>Plus our crew</strong> of editors, strategists, and producers. On every account, every week.
+            </p>
         </div>
     </section>
-    -->
 
-
-    <!-- Numbers -->
+    <!-- Track Record -->
     <section class="numbers">
         <div class="container">
             <div class="numbers-head">
                 <div class="reveal"><span class="kicker"><span class="dot"></span> The numbers</span></div>
                 <h2 class="numbers-title reveal reveal-delay-1">
-                    Content that <span class="ital">actually</span> moves.
+                    Track <span class="ital">record.</span>
                 </h2>
-                <p class="numbers-lead reveal reveal-delay-2">Real results from real accounts. Here's what happens when strategy, production, and consistency compound.</p>
+                <p class="numbers-lead reveal reveal-delay-2">One current client. One former role. One operational promise.</p>
             </div>
 
             <div class="numbers-grid">
                 <article class="stat reveal">
-                    <span class="stat-tag">Client work</span>
+                    <span class="stat-tag">@titleinsuranceguy</span>
                     <div class="num">1<span class="unit">M</span><em>+</em></div>
-                    <h3 class="stat-label">Views per month</h3>
-                    <p class="stat-note">From a single client — just <strong>three months</strong> into our partnership.</p>
+                    <h3 class="stat-label">Monthly views</h3>
+                    <p class="stat-note">Reached within three months of launch with <strong>Brad Hobson</strong>.</p>
                 </article>
 
                 <article class="stat reveal reveal-delay-1">
                     <span class="stat-tag">Monster Army</span>
-                    <div class="num">350<span class="unit">K</span><em>+</em></div>
-                    <h3 class="stat-label">Followers scaled</h3>
-                    <p class="stat-note">From <strong>40K to 350K+</strong> — <strong>8.7×</strong> growth under our strategy.</p>
+                    <div class="num">350<span class="unit">K</span></div>
+                    <h3 class="stat-label">Followers grown</h3>
+                    <p class="stat-note">From <strong>40K to 350K</strong> under Zach's strategy at Monster Energy.</p>
                 </article>
 
                 <article class="stat reveal reveal-delay-2">
                     <span class="stat-tag">Founder-led</span>
                     <div class="num">100<span class="unit">%</span></div>
-                    <h3 class="stat-label">Both founders, every week</h3>
-                    <p class="stat-note">Every account. No layers, no account managers. No exceptions.</p>
+                    <h3 class="stat-label">Both founders, every account</h3>
+                    <p class="stat-note">Every week. No layers, no account managers, no exceptions.</p>
                 </article>
             </div>
 
-            <p class="numbers-note reveal">★ Representative results. Every brand is different — that's the point.</p>
-        </div>
-    </section>
-
-    <!-- Packages -->
-    <section class="packages" id="packages">
-        <div class="container">
-            <div class="packages-head">
-                <div class="reveal"><span class="kicker"><span class="dot"></span> Packages</span></div>
-                <h2 class="packages-title reveal reveal-delay-1">
-                    Three ways to <span class="ital">work</span> together.
-                </h2>
-                <p class="packages-lead reveal reveal-delay-2">Every engagement includes on-location filming, full production, posting, and monthly strategy. 3-month minimum — month-to-month after that.</p>
-            </div>
-
-            <div class="packages-grid">
-                <article class="pack pack--starter reveal">
-                    <div class="pack-header">
-                        <span class="pack-no">01</span>
-                        <span class="pack-name">Starter</span>
-                    </div>
-                    <div class="pack-price"><span class="amt">$2,995</span><span class="per">/ month</span></div>
-                    <div class="pack-videos">
-                        <span class="pack-videos-num">15</span>
-                        <span class="pack-videos-label">videos<br/><em>per month</em></span>
-                    </div>
-                    <ul>
-                        <li>On-location filming</li>
-                        <li>Scripting &amp; editing</li>
-                        <li>Posting &amp; captions</li>
-                        <li>Monthly strategy call</li>
-                        <li>Performance reporting</li>
-                    </ul>
-                    <a href="https://calendly.com/d/cxrq-w97-n9c/discovery-call-your-social-hq" target="_blank" rel="noopener" class="pack-cta">
-                        Book Starter
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
-                    </a>
-                </article>
-                <article class="pack featured reveal reveal-delay-1">
-                    <div class="pack-header">
-                        <span class="pack-no">02</span>
-                        <span class="pack-name">Growth</span>
-                    </div>
-                    <div class="pack-price"><span class="amt">$3,595</span><span class="per">/ month</span></div>
-                    <div class="pack-videos">
-                        <span class="pack-videos-num">20</span>
-                        <span class="pack-videos-label">videos<br/><em>per month</em></span>
-                    </div>
-                    <ul>
-                        <li>On-location filming</li>
-                        <li>Scripting &amp; editing</li>
-                        <li>Posting &amp; captions</li>
-                        <li>Monthly strategy call</li>
-                        <li>Performance reporting</li>
-                    </ul>
-                    <a href="https://calendly.com/d/cxrq-w97-n9c/discovery-call-your-social-hq" target="_blank" rel="noopener" class="pack-cta">
-                        Book Growth
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
-                    </a>
-                </article>
-                <article class="pack pack--authority reveal reveal-delay-2">
-                    <div class="pack-header">
-                        <span class="pack-no">03</span>
-                        <span class="pack-name">Authority</span>
-                    </div>
-                    <div class="pack-price"><span class="amt">$4,895</span><span class="per">/ month</span></div>
-                    <div class="pack-videos">
-                        <span class="pack-videos-num">30</span>
-                        <span class="pack-videos-label">videos<br/><em>per month</em></span>
-                    </div>
-                    <ul>
-                        <li>On-location filming</li>
-                        <li>Scripting &amp; editing</li>
-                        <li>Posting &amp; captions</li>
-                        <li>Monthly strategy call</li>
-                        <li>Performance reporting</li>
-                    </ul>
-                    <a href="https://calendly.com/d/cxrq-w97-n9c/discovery-call-your-social-hq" target="_blank" rel="noopener" class="pack-cta">
-                        Book Authority
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
-                    </a>
-                </article>
-            </div>
-
-            <div class="packages-foot reveal">
-                <span class="foot-chip"><strong>3-Month Minimum</strong></span>
-                <span class="foot-divider">·</span>
-                <span class="foot-chip">Month-to-month after</span>
-                <span class="foot-divider">·</span>
-                <span class="foot-chip">On-location filming included</span>
-            </div>
+            <p class="numbers-note reveal">★ Every brand gets its own playbook.</p>
         </div>
     </section>
 
@@ -3237,11 +3255,6 @@
                         <a href="mailto:zach@yoursocialheadquarters.com" class="cta-email">Or email us</a>
                     </div>
 
-                    <div class="cta-meta reveal reveal-delay-3">
-                        <span>30 minutes</span>
-                        <span>Zero pressure</span>
-                        <span>Real answers</span>
-                    </div>
                 </div>
 
                 <div class="cta-right reveal reveal-delay-2">
@@ -3252,10 +3265,8 @@
                                     <defs>
                                         <path id="cta-sticker-path" d="M 100, 100 m -75, 0 a 75,75 0 1,1 150,0 a 75,75 0 1,1 -150,0" />
                                     </defs>
-                                    <text>
-                                        <textPath href="#cta-sticker-path" startOffset="0">
-                                            ★ BOOK THE CALL ★ TALK TO US ★
-                                        </textPath>
+                                    <text textLength="471" lengthAdjust="spacing">
+                                        <textPath href="#cta-sticker-path" startOffset="0">★ BOOK THE CALL ★ TALK TO US ★</textPath>
                                     </text>
                                 </svg>
                             </div>
