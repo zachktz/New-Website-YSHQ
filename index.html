@@ -431,7 +431,7 @@
             display: flex;
             gap: 0.875rem;
             flex-wrap: wrap;
-            margin-top: 1.25rem;
+            margin-top: 0.25rem;
             opacity: 0;
             animation: fade-up 1s var(--ease-out) 0.9s forwards;
         }
@@ -793,7 +793,7 @@
         .services-head {
             margin-bottom: 2.5rem;
             display: grid;
-            grid-template-columns: 1.2fr 1fr;
+            grid-template-columns: 1.6fr 1fr;
             gap: 3rem;
             align-items: end;
         }
@@ -941,7 +941,7 @@
             grid-template-columns: 1.4fr 1fr;
             gap: clamp(2rem, 4vw, 4rem);
             align-items: end;
-            padding-bottom: 1.75rem;
+            padding-bottom: 1.5rem;
             border-bottom: 1.5px solid var(--ink);
             margin-bottom: 2rem;
             position: relative;
@@ -975,10 +975,8 @@
             position: relative;
             z-index: 2;
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(5, 1fr);
             gap: 1.25rem;
-            border-top: 1.5px solid var(--ink);
-            padding-top: 1.5rem;
         }
 
         .step-row {
@@ -1001,6 +999,7 @@
         .step-row:nth-child(2) { background: var(--ink); color: var(--cream); border-color: var(--ink); }
         .step-row:nth-child(3) { background: var(--pink); color: var(--cream); border-color: var(--pink); }
         .step-row:nth-child(4) { background: var(--cream-warm); color: var(--ink); }
+        .step-row:nth-child(5) { background: var(--cream-soft); color: var(--ink); }
 
         .step-row:hover {
             transform: translateY(-5px);
@@ -1033,7 +1032,8 @@
         }
         .step-row:nth-child(2) .step-number,
         .step-row:nth-child(3) .step-number { color: var(--cream); }
-        .step-row:nth-child(4) .step-number { color: var(--ink); }
+        .step-row:nth-child(4) .step-number,
+        .step-row:nth-child(5) .step-number { color: var(--ink); }
 
         .step-content {
             display: flex;
@@ -1058,7 +1058,8 @@
         }
         .step-row:nth-child(2) .step-tag { color: var(--pink); }
         .step-row:nth-child(3) .step-tag { color: var(--cream); }
-        .step-row:nth-child(4) .step-tag { color: var(--pink); }
+        .step-row:nth-child(4) .step-tag,
+        .step-row:nth-child(5) .step-tag { color: var(--pink); }
 
         .step-title {
             font-family: 'Archivo Black', sans-serif;
@@ -1076,19 +1077,25 @@
             color: var(--ink-muted);
         }
         .step-row:nth-child(1) .step-desc,
-        .step-row:nth-child(4) .step-desc { color: var(--ink-muted); }
+        .step-row:nth-child(4) .step-desc,
+        .step-row:nth-child(5) .step-desc { color: var(--ink-muted); }
         .step-row:nth-child(2) .step-desc { color: rgba(244, 238, 221, 0.78); }
         .step-row:nth-child(3) .step-desc { color: rgba(244, 238, 221, 0.88); }
 
         .step-arrow { display: none; }
         .step-end { display: none; }
 
+        @media (max-width: 1200px) {
+            .step-list { grid-template-columns: repeat(3, 1fr); }
+        }
         @media (max-width: 1024px) {
             .process-header { grid-template-columns: 1fr; gap: 1.5rem; }
             .step-list { grid-template-columns: repeat(2, 1fr); }
+            .step-row:nth-child(5) { grid-column: 1 / -1; }
         }
         @media (max-width: 560px) {
             .step-list { grid-template-columns: 1fr; }
+            .step-row:nth-child(5) { grid-column: auto; }
         }
 
         /* ======================================
@@ -1462,6 +1469,10 @@
             min-height: 0;
             aspect-ratio: 4 / 3;
             width: 100%;
+        }
+        .member-visual--carson img {
+            object-fit: cover;
+            object-position: center 30%;
         }
         .member--vertical .member-info {
             padding: 1.75rem 1.75rem 2rem;
@@ -2163,7 +2174,6 @@
             align-items: center;
             gap: 1.5rem;
             flex-wrap: wrap;
-            margin-bottom: 2.5rem;
         }
         .cta-btn {
             display: inline-flex;
@@ -2440,6 +2450,7 @@
             .story-grid { grid-template-columns: 1fr; gap: 2rem; }
             .story-lead { position: static; }
             .services-head, .diff-head, .niches-head, .process-header { grid-template-columns: 1fr; gap: 1.5rem; }
+            .yourteam-stamp { display: none; }
             .diff-grid { grid-template-columns: 1fr 1fr; }
             .team-grid { grid-template-columns: 1fr 1fr; max-width: 100%; gap: 1.5rem; }
             .packages-grid { grid-template-columns: repeat(3, 1fr); gap: 0.875rem; }
@@ -2518,8 +2529,15 @@
             .hero-ctas { flex-direction: column; align-items: stretch; gap: 0.75rem; }
             .hero-ctas .btn { justify-content: center; width: 100%; padding: 1.125rem 1.5rem; min-height: 52px; }
             .hero-meta { gap: 1.25rem; padding-top: 1.75rem; margin-top: 1.5rem; }
-            .hero-meta-left { gap: 1.5rem 2rem; width: 100%; }
-            .hero-meta-item { flex: 0 0 auto; min-width: 45%; }
+            .hero-meta-left { display: flex; flex-direction: column; gap: 1rem; width: 100%; }
+            .hero-meta-item { flex: 0 0 auto; min-width: 0; display: flex; align-items: baseline; gap: 0.875rem; }
+            .hero-meta-item .label { font-size: 0.58rem; letter-spacing: 0.16em; margin-bottom: 0; flex: 0 0 72px; }
+            .hero-meta-item .value { font-size: 0.9375rem; line-height: 1.25; }
+
+            /* Your Team — hide rotating badge on mobile (overlaps heading) */
+            .yourteam-stamp { display: none; }
+            .yourteam-title { font-size: clamp(2.25rem, 11vw, 3.5rem); }
+            .team-pull { font-size: 1.1rem; padding: 1.5rem 0.5rem; }
             .hero-sticker { display: none; }
 
             /* Ticker — faster scroll on mobile */
@@ -3161,7 +3179,7 @@
                 </article>
 
                 <article class="member member--vertical reveal reveal-delay-1">
-                    <div class="member-visual">
+                    <div class="member-visual member-visual--carson">
                         <img src="carson.jpg" alt="Carson Fassett">
                     </div>
                     <div class="member-info">
