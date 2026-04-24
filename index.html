@@ -830,10 +830,10 @@
         }
         .svc-row {
             display: grid;
-            grid-template-columns: 110px 1fr minmax(320px, 38%) auto;
-            gap: clamp(1.5rem, 3vw, 3rem);
+            grid-template-columns: 72px 1fr minmax(320px, 42%) auto;
+            gap: clamp(1.25rem, 2.5vw, 2.5rem);
             align-items: center;
-            padding: clamp(1.5rem, 2.25vw, 2.5rem) 0.25rem;
+            padding: clamp(1.125rem, 1.75vw, 1.75rem) 0.25rem;
             border-bottom: 1px solid var(--line-strong);
             position: relative;
             cursor: default;
@@ -861,18 +861,18 @@
 
         .svc-num {
             font-family: 'Archivo Black', sans-serif;
-            font-size: clamp(3rem, 5.5vw, 5.5rem);
-            line-height: 0.85;
-            letter-spacing: -0.05em;
+            font-size: clamp(1.875rem, 2.75vw, 2.75rem);
+            line-height: 0.9;
+            letter-spacing: -0.04em;
             color: var(--pink);
             transition: color 320ms var(--ease-snap), transform 420ms var(--ease-snap);
         }
 
         .svc-title {
             font-family: 'Archivo Black', sans-serif;
-            font-size: clamp(2rem, 4.5vw, 4.5rem);
-            line-height: 0.92;
-            letter-spacing: -0.04em;
+            font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+            line-height: 0.95;
+            letter-spacing: -0.03em;
             text-transform: uppercase;
             color: var(--ink);
             transition: transform 420ms var(--ease-snap);
@@ -1470,9 +1470,14 @@
             aspect-ratio: 4 / 3;
             width: 100%;
         }
+        .member-visual--carson {
+            background: var(--ink);
+        }
         .member-visual--carson img {
-            object-fit: cover;
-            object-position: center 30%;
+            object-fit: contain;
+            object-position: center bottom;
+            transform: scale(1.3);
+            transform-origin: center bottom;
         }
         .member--vertical .member-info {
             padding: 1.75rem 1.75rem 2rem;
