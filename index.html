@@ -2587,7 +2587,7 @@
             .story-grid { grid-template-columns: 1fr; gap: 2rem; }
             .story-lead { position: static; }
             .services-head, .diff-head, .niches-head, .process-header { grid-template-columns: 1fr; gap: 1.5rem; }
-            .yourteam-stamp { display: none; }
+            .yourteam-stamp, a.yourteam-stamp { display: none !important; }
             .diff-grid { grid-template-columns: 1fr 1fr; }
             .team-grid { grid-template-columns: 1fr 1fr; max-width: 100%; gap: 1.5rem; }
             .packages-grid { grid-template-columns: repeat(3, 1fr); gap: 0.875rem; }
@@ -2672,10 +2672,10 @@
             .hero-meta-item .value { font-size: 0.9375rem; line-height: 1.25; }
 
             /* Your Team — hide rotating badge on mobile (overlaps heading) */
-            .yourteam-stamp { display: none; }
+            .yourteam-stamp, a.yourteam-stamp { display: none !important; }
             .yourteam-title { font-size: clamp(2.25rem, 11vw, 3.5rem); }
             .team-pull { font-size: 1.1rem; padding: 1.5rem 0.5rem; }
-            .hero-sticker { display: none; }
+            .hero-sticker, a.hero-sticker { display: none !important; }
 
             /* Ticker — faster scroll on mobile */
             .ticker-track { font-size: clamp(1.75rem, 9vw, 2.75rem); gap: 2.5rem; animation-duration: 14s; }
@@ -2696,6 +2696,8 @@
             .story-pull::before { font-size: 2.5rem; }
 
             /* Services — stack layout vertically on mobile */
+            .services-title { font-size: clamp(1.5rem, 7.5vw, 2rem); line-height: 0.98; }
+            .services-lead { font-size: 0.9rem; }
             .svc-list { border-top-width: 1.5px; border-bottom-width: 1.5px; }
             .svc-row {
                 grid-template-columns: auto 1fr auto;
